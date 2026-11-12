@@ -1,0 +1,657 @@
+{
+  "$description": "EKOA — tokens independientes del tema (DTCG 2025.10).",
+  "font": {
+    "$type": "fontFamily",
+    "family": {
+      "display": {
+        "$value": [
+          "Archivo",
+          "-apple-system",
+          "SF Pro Display",
+          "system-ui",
+          "sans-serif"
+        ],
+        "$description": "Títulos y texto muy grande (Title 3 hacia arriba). Archivo se carga desde Google Fonts con pesos 700 y 800."
+      },
+      "sans": {
+        "$value": [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "SF Pro Text",
+          "SF Pro Display",
+          "system-ui",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif"
+        ],
+        "$description": "Texto de Headline hacia abajo. SF Pro se pide con la pila del sistema porque Apple no permite redistribuir el archivo."
+      }
+    }
+  },
+  "text": {
+    "$type": "typography",
+    "$description": "Escala tipográfica al estilo de los text styles de iOS. lineHeight es un multiplicador (DTCG); la altura exacta en px está en $extensions. letterSpacing se expresa en px (DTCG no admite em); el valor original en em está en $extensions.",
+    "display": {
+      "$value": {
+        "fontFamily": "{font.family.display}",
+        "fontSize": {
+          "value": 40,
+          "unit": "px"
+        },
+        "fontWeight": 800,
+        "letterSpacing": {
+          "value": -0.8,
+          "unit": "px"
+        },
+        "lineHeight": 1.1
+      },
+      "$description": "Texto muy grande: cifras destacadas, portadas y pantallas de bienvenida. Nunca en cuerpo de texto.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 44,
+          "letterSpacingEm": -0.02
+        }
+      }
+    },
+    "large-title": {
+      "$value": {
+        "fontFamily": "{font.family.display}",
+        "fontSize": {
+          "value": 34,
+          "unit": "px"
+        },
+        "fontWeight": 800,
+        "letterSpacing": {
+          "value": -0.68,
+          "unit": "px"
+        },
+        "lineHeight": 1.205882
+      },
+      "$description": "Equivale a Large Title de iOS: título grande de cada pantalla principal, bajo la barra de navegación. Una vez por pantalla.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 41,
+          "letterSpacingEm": -0.02
+        }
+      }
+    },
+    "title-1": {
+      "$value": {
+        "fontFamily": "{font.family.display}",
+        "fontSize": {
+          "value": 28,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": -0.42,
+          "unit": "px"
+        },
+        "lineHeight": 1.214286
+      },
+      "$description": "Equivale a Title 1: título de pantalla de detalle o de resumen.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 34,
+          "letterSpacingEm": -0.015
+        }
+      }
+    },
+    "title-2": {
+      "$value": {
+        "fontFamily": "{font.family.display}",
+        "fontSize": {
+          "value": 22,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": -0.22,
+          "unit": "px"
+        },
+        "lineHeight": 1.272727
+      },
+      "$description": "Equivale a Title 2: título de sección destacada.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 28,
+          "letterSpacingEm": -0.01
+        }
+      }
+    },
+    "title-3": {
+      "$value": {
+        "fontFamily": "{font.family.display}",
+        "fontSize": {
+          "value": 20,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": -0.1,
+          "unit": "px"
+        },
+        "lineHeight": 1.25
+      },
+      "$description": "Equivale a Title 3: título de hoja modal y de bloque.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 25,
+          "letterSpacingEm": -0.005
+        }
+      }
+    },
+    "headline": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 17,
+          "unit": "px"
+        },
+        "fontWeight": 600,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.294118
+      },
+      "$description": "Equivale a Headline: título de fila de lista, de tarjeta y etiqueta de botones grandes.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 22,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "body": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 17,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.294118
+      },
+      "$description": "Equivale a Body: texto corrido, descripciones, burbujas de chat y texto de campos.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 22,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "callout": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 16,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.3125
+      },
+      "$description": "Equivale a Callout: texto de apoyo algo más pequeño que body.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 21,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "subheadline": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 15,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.333333
+      },
+      "$description": "Equivale a Subheadline: subtítulos de fila, chips y metadatos principales, en ink-soft.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 20,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "subheadline-strong": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 15,
+          "unit": "px"
+        },
+        "fontWeight": 600,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.333333
+      },
+      "$description": "Subheadline en semibold: etiqueta de botones pequeños y de chips seleccionados.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 20,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "footnote": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 13,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.384615
+      },
+      "$description": "Equivale a Footnote: metadatos, mensajes de ayuda y de error de un campo. Es el mínimo para texto de lectura.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 18,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "caption-1": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 12,
+          "unit": "px"
+        },
+        "fontWeight": 400,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.333333
+      },
+      "$description": "Equivale a Caption 1: pies de gráfico y notas secundarias.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 16,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "caption-2": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 11,
+          "unit": "px"
+        },
+        "fontWeight": 600,
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.181818
+      },
+      "$description": "Equivale a Caption 2: etiqueta de tab bar. No se usa para texto de lectura.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 13,
+          "letterSpacingEm": 0
+        }
+      }
+    },
+    "eyebrow": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 12,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": 0.72,
+          "unit": "px"
+        },
+        "lineHeight": 1.333333
+      },
+      "$description": "Rótulo de grupo o de campo, en ink-soft. Se escribe en mayúsculas con text-transform: uppercase.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 16,
+          "letterSpacingEm": 0.06,
+          "textTransform": "uppercase"
+        }
+      }
+    },
+    "badge": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 11,
+          "unit": "px"
+        },
+        "fontWeight": 700,
+        "letterSpacing": {
+          "value": 0.11,
+          "unit": "px"
+        },
+        "lineHeight": 1.272727
+      },
+      "$description": "Etiqueta de categoría dentro de una píldora.",
+      "$extensions": {
+        "com.ekoa": {
+          "lineHeightPx": 14,
+          "letterSpacingEm": 0.01
+        }
+      }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "$description": "Cuadrícula de 4 pt de iOS; el nombre es el valor en px (1 pt = 1 px a @1x).",
+    "4": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$description": "Separación mínima: entre título y subtítulo de una fila, y entre icono y etiqueta de una tab."
+    },
+    "8": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Separación entre chips, entre icono y etiqueta dentro de un botón, y mínima entre dos elementos pulsables."
+    },
+    "12": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Separación entre icono y texto en una fila y entre elementos apilados de un formulario."
+    },
+    "16": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Margen lateral de pantalla, relleno de filas, tarjetas y hojas."
+    },
+    "20": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Relleno de tarjetas grandes y separación entre secciones en pantallas de 390 pt o más."
+    },
+    "24": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Separación entre bloques y bajo el contenido de una pantalla."
+    },
+    "32": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      },
+      "$description": "Separación entre secciones principales."
+    },
+    "40": {
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$description": "Aire alrededor de estados vacíos y pantallas de bienvenida."
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "En Figma activa el suavizado de esquinas de iOS (corner smoothing 60 %) en todos los radios.",
+    "xs": {
+      "$value": {
+        "value": 7,
+        "unit": "px"
+      },
+      "$description": "Segmento seleccionado de un segmented control."
+    },
+    "track": {
+      "$value": {
+        "value": 9,
+        "unit": "px"
+      },
+      "$description": "Pista del segmented control."
+    },
+    "sm": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$description": "Campos de texto, iconos de fila y notas."
+    },
+    "btn": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$description": "Botones grandes."
+    },
+    "md": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Tarjetas de lugar."
+    },
+    "sheet": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Esquinas superiores de hojas modales y de la hoja del mapa."
+    },
+    "lg": {
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$description": "Tarjetas y listas agrupadas."
+    },
+    "pill": {
+      "$value": {
+        "value": 999,
+        "unit": "px"
+      },
+      "$description": "Chips, badges y switches."
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "iOS usa materiales y separadores antes que sombras: solo elementos flotantes; las tarjetas van planas.",
+    "sheet": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.14,
+          "hex": "#000000"
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": -10,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 26,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "$description": "Hoja inferior arrastrable del mapa."
+    },
+    "float": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.1,
+          "hex": "#000000"
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 2,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 10,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "$description": "Controles flotantes sobre el mapa."
+    },
+    "segment": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.14,
+          "hex": "#000000"
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 1,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 3,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "$description": "Segmento seleccionado de un segmented control."
+    }
+  },
+  "layout": {
+    "$type": "dimension",
+    "$description": "Medidas de iPhone 15 (390 × 844 pt) y de los elementos de sistema. Diseña dentro de la zona segura y no coloques controles en safe-top ni safe-bottom.",
+    "screen-w": {
+      "$value": {
+        "value": 390,
+        "unit": "px"
+      },
+      "$description": "Ancho del lienzo base de iPhone; en móviles más pequeños el contenido se adapta, no se escala."
+    },
+    "screen-h": {
+      "$value": {
+        "value": 844,
+        "unit": "px"
+      },
+      "$description": "Alto del lienzo base de iPhone."
+    },
+    "safe-top": {
+      "$value": {
+        "value": 59,
+        "unit": "px"
+      },
+      "$description": "Zona segura superior (Dynamic Island): el contenido empieza debajo."
+    },
+    "safe-bottom": {
+      "$value": {
+        "value": 34,
+        "unit": "px"
+      },
+      "$description": "Zona segura inferior (indicador de inicio): ningún control pulsable dentro."
+    },
+    "screen-margin": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Margen lateral de todo el contenido de una pantalla."
+    },
+    "nav-bar-h": {
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      },
+      "$description": "Alto de la barra de navegación, sin contar la zona segura superior."
+    },
+    "tab-bar-h": {
+      "$value": {
+        "value": 83,
+        "unit": "px"
+      },
+      "$description": "Alto de la tab bar: 49 pt de barra más 34 pt de zona segura inferior."
+    },
+    "tap-min": {
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      },
+      "$description": "Área táctil mínima de cualquier control; si el dibujo es menor, amplía el área pulsable."
+    },
+    "row-min": {
+      "$value": {
+        "value": 56,
+        "unit": "px"
+      },
+      "$description": "Alto mínimo de una fila de lista con icono y subtítulo."
+    },
+    "button-h": {
+      "$value": {
+        "value": 50,
+        "unit": "px"
+      },
+      "$description": "Alto de los botones principales a ancho completo."
+    }
+  }
+}

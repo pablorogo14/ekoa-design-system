@@ -1,0 +1,207 @@
+/* EKOA — generado por scripts/build.mjs desde tokens/*.tokens.json. No editar a mano. */
+:root, [data-theme="light"] {
+  --paper: #ede8df; /* Fondo de pantalla y de barras sólidas; equivale a systemGroupedBackground. Sobre él van ink, ink-soft, moss y clay-text; también es el texto sobre un relleno ink. */
+  --card: #fbf8f1; /* Superficie de tarjetas, listas agrupadas, campos de texto y burbujas de la IA; equivale a secondarySystemGroupedBackground. Sobre ella van ink, ink-soft y moss. En claro se aclaró hacia el blanco (antes #F4F0E8) para distinguirse de paper sin llegar a blanco puro. */
+  --card-alt: #e2dcce; /* Superficie neutra secundaria: pista del segmented control, campos deshabilitados, badge neutro, notas y fondo del botón secundario, del chip tinted y del recuadro de icono de fila (los tres antes en moss-weak); equivale a tertiarySystemFill. Texto encima: ink (12:1 o más) o ink-soft — en claro, ink-soft sobre el card-alt actual da 4,2:1, por debajo del objetivo de 4,5:1 del sistema (el valor anterior de card-alt daba 4,8:1); en oscuro sigue en 4,7:1 o más. Aviso heredado del prototipo, no corregido en esta sincronización. */
+  --ink: #1c1e16; /* Texto principal y títulos sobre paper, card y card-alt (12:1 o más en ambos temas); equivale a label. También el fondo del toast y, tras reducir el acento de color al mínimo, el relleno de los elementos interactivos y de marca: botón primario, chip seleccionado, burbuja del usuario, switch activo, pin del mapa, tab e icono de fila activos, day-cell activo, enlaces y anillo de foco (antes en moss). El texto sobre un relleno ink usa paper. */
+  --ink-soft: #64675a; /* Texto secundario, etiquetas y metadatos sobre paper y card (4,7:1 o más en ambos temas); equivale a secondaryLabel. Sobre el card-alt actual, en claro da 4,2:1 — por debajo de 4,5:1, ya que card-alt se oscureció después de fijar este valor; en oscuro sigue en 4,7:1 o más. El valor claro es más oscuro que el del prototipo original (#6E7165) para llegar a 4,5:1 sobre el card-alt de entonces. */
+  --ink-faint: #a9ac9c; /* Solo decorativo: chevrones y etiquetas de eje sin significado propio; equivale a tertiaryLabel. En claro da 2,1:1 sobre paper, así que no sirve para texto (tampoco para placeholders, que usan ink-soft) ni para iconos que informen; las tabs inactivas usan ink-soft. */
+  --hairline: #e8e3db; /* Separadores de 0,5 px, borde de campo de 1 px y tirador de hoja; equivale a separator. Es decorativo: el borde del campo no lo identifica, lo hace su etiqueta visible. */
+  --moss: #626549; /* Acento de marca, reducido al mínimo en la app: solo la categoría Naturaleza (badge y portada por defecto) y el nivel medio del gráfico de afluencia. Ya no rellena botones, chips, switch, pin, tabs ni enlaces, y ya no representa el éxito — ver ink. En claro, moss pasó de un verde azulado (#3EA198) a un verde oliva (#626549): como texto directo ahora da 4,9:1 sobre paper y 5,7:1 sobre card, así que ya no hace falta la reserva a iconos/elementos grandes que tenía el valor anterior (~2,9:1). El valor de tema oscuro no se actualizó junto con ese cambio y sigue en el verde azulado anterior (#6EB9B2); confirmar con Pablo si debe alinearse o si la asimetría es intencionada. El texto sobre un relleno moss usaría moss-contrast, aunque hoy ningún componente rellena con moss. */
+  --moss-weak: #e8ebcf; /* Fondo del badge y la portada por defecto de la categoría Naturaleza. Texto/icono encima: moss (5,3:1 en claro con el verde oliva actual, antes 2,7:1 con el verde azulado; 6,2:1 en oscuro). */
+  --moss-contrast: #0b2422; /* Pensado para texto e iconos sobre un relleno moss (5,2:1 en claro, 7,5:1 en oscuro), pero hoy ningún componente de la app rellena con moss — esos rellenos pasaron a ink. Token sin uso activo; se conserva por si un futuro componente vuelve a rellenar con moss. */
+  --clay: #b5622c; /* Acento cálido para Gastronomía, avisos y el nivel medio de gráficos (barras de afluencia). Como relleno o gráfico da 4,1:1 o más sobre paper. No lo uses como texto sobre clay-weak en el tema claro (3,6:1): usa clay-text. */
+  --clay-weak: #f3e4d6; /* Fondo del badge de Gastronomía y de avisos y resaltados cálidos. Texto encima: clay-text. */
+  --clay-text: #96501f; /* Texto de acento cálido sobre clay-weak, paper y card (4,8:1 o más en claro; en oscuro coincide con clay). Token añadido al prototipo. */
+  --danger: #ff3b30; /* Relleno o icono de acciones destructivas y del nivel alto de afluencia (3:1 o más sobre paper y card en ambos temas); equivale a systemRed. No es color de texto ni de fondo de botón con texto blanco (3,6:1): usa danger-text sobre danger-weak. */
+  --danger-weak: #ffe5e3; /* Fondo del botón destructivo (estilo tinted) y de avisos de error. Texto encima: danger-text. */
+  --danger-text: #c0271b; /* Texto de error o destructivo sobre paper, card y danger-weak (4,9:1 o más en claro, 5,3:1 o más en oscuro). Token añadido al prototipo. */
+  --switch-off: #e9e9ea; /* Pista del switch apagado; la perilla es knob. El estado también lo comunica la posición de la perilla. */
+  --knob: #ffffff; /* Perilla del switch, blanca en ambos temas por el contraste con switch-off y con ink (switch encendido). */
+  --bar: #ede8df; /* Fondo de la barra de navegación y la tab bar, con blur (saturate 180 %, blur 18 px) y un hairline de 0,5 px; equivale al material de barra de iOS. En claro ya no es translúcido — usa paper sólido, con el blur ambiental como resto decorativo sin efecto visible; en oscuro conserva la translucidez real. */
+  --scrim: rgba(20,22,14,0.4); /* Velo detrás de hojas modales. */
+  --map-base: #f0eada; /* Fondo base de las ilustraciones de mapa (SVG dibujado a mano), tanto en la tarjeta de mapa como en el lienzo de mapa de un viaje. */
+  --map-park: #c9d9bf; /* Áreas verdes (parques, bosque) dentro de las ilustraciones de mapa. No es moss: es un tono propio, más apagado, pensado para grandes superficies de fondo. */
+  --map-water: #bbd4e3; /* Masas y trazos de agua dentro de las ilustraciones de mapa. */
+  --map-road: #fcfaf3; /* Trazos de carretera y sendero dentro de las ilustraciones de mapa, sobre map-base. */
+  --shadow-sheet: 0 -10px 26px rgba(0,0,0,0.14); /* Hoja inferior arrastrable del mapa. */
+  --shadow-float: 0 2px 10px rgba(0,0,0,0.1); /* Controles flotantes sobre el mapa. */
+  --shadow-segment: 0 1px 3px rgba(0,0,0,0.14); /* Segmento seleccionado de un segmented control. */
+}
+[data-theme="dark"] {
+  --paper: #14160f;
+  --card: #1f2217;
+  --card-alt: #262a1c;
+  --ink: #f1f0e6;
+  --ink-soft: #a6a996;
+  --ink-faint: #71745f;
+  --hairline: #33362a;
+  --moss: #6eb9b2;
+  --moss-weak: #17302c;
+  --moss-contrast: #0b201d;
+  --clay: #e08a4f;
+  --clay-weak: #3a2a1c;
+  --clay-text: #e08a4f;
+  --danger: #ff453a;
+  --danger-weak: #3a2320;
+  --danger-text: #ff6e64;
+  --switch-off: #3a3d33;
+  --knob: #ffffff;
+  --bar: rgba(20,22,15,0.78);
+  --scrim: rgba(0,0,0,0.55);
+  --map-base: #2a2b21;
+  --map-park: #2e4334;
+  --map-water: #243b49;
+  --map-road: #3a3c2f;
+}
+:root {
+  --space-4: 4px; /* Separación mínima: entre título y subtítulo de una fila, y entre icono y etiqueta de una tab. */
+  --space-8: 8px; /* Separación entre chips, entre icono y etiqueta dentro de un botón, y mínima entre dos elementos pulsables. */
+  --space-12: 12px; /* Separación entre icono y texto en una fila y entre elementos apilados de un formulario. */
+  --space-16: 16px; /* Margen lateral de pantalla, relleno de filas, tarjetas y hojas. */
+  --space-20: 20px; /* Relleno de tarjetas grandes y separación entre secciones en pantallas de 390 pt o más. */
+  --space-24: 24px; /* Separación entre bloques y bajo el contenido de una pantalla. */
+  --space-32: 32px; /* Separación entre secciones principales. */
+  --space-40: 40px; /* Aire alrededor de estados vacíos y pantallas de bienvenida. */
+  --radius-xs: 7px; /* Segmento seleccionado de un segmented control. */
+  --radius-track: 9px; /* Pista del segmented control. */
+  --radius-sm: 10px; /* Campos de texto, iconos de fila y notas. */
+  --radius-btn: 14px; /* Botones grandes. */
+  --radius-md: 16px; /* Tarjetas de lugar. */
+  --radius-sheet: 20px; /* Esquinas superiores de hojas modales y de la hoja del mapa. */
+  --radius-lg: 22px; /* Tarjetas y listas agrupadas. */
+  --radius-pill: 999px; /* Chips, badges y switches. */
+  --screen-w: 390px; /* Ancho del lienzo base de iPhone; en móviles más pequeños el contenido se adapta, no se escala. */
+  --screen-h: 844px; /* Alto del lienzo base de iPhone. */
+  --safe-top: 59px; /* Zona segura superior (Dynamic Island): el contenido empieza debajo. */
+  --safe-bottom: 34px; /* Zona segura inferior (indicador de inicio): ningún control pulsable dentro. */
+  --screen-margin: 16px; /* Margen lateral de todo el contenido de una pantalla. */
+  --nav-bar-h: 44px; /* Alto de la barra de navegación, sin contar la zona segura superior. */
+  --tab-bar-h: 83px; /* Alto de la tab bar: 49 pt de barra más 34 pt de zona segura inferior. */
+  --tap-min: 44px; /* Área táctil mínima de cualquier control; si el dibujo es menor, amplía el área pulsable. */
+  --row-min: 56px; /* Alto mínimo de una fila de lista con icono y subtítulo. */
+  --button-h: 50px; /* Alto de los botones principales a ancho completo. */
+  --font-display: "Archivo", -apple-system, "SF Pro Display", system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, sans-serif;
+  --text-display: 800 40px/44px var(--font-display); /* Texto muy grande: cifras destacadas, portadas y pantallas de bienvenida. Nunca en cuerpo de texto. */
+  --text-large-title: 800 34px/41px var(--font-display); /* Equivale a Large Title de iOS: título grande de cada pantalla principal, bajo la barra de navegación. Una vez por pantalla. */
+  --text-title-1: 700 28px/34px var(--font-display); /* Equivale a Title 1: título de pantalla de detalle o de resumen. */
+  --text-title-2: 700 22px/28px var(--font-display); /* Equivale a Title 2: título de sección destacada. */
+  --text-title-3: 700 20px/25px var(--font-display); /* Equivale a Title 3: título de hoja modal y de bloque. */
+  --text-headline: 600 17px/22px var(--font-sans); /* Equivale a Headline: título de fila de lista, de tarjeta y etiqueta de botones grandes. */
+  --text-body: 400 17px/22px var(--font-sans); /* Equivale a Body: texto corrido, descripciones, burbujas de chat y texto de campos. */
+  --text-callout: 400 16px/21px var(--font-sans); /* Equivale a Callout: texto de apoyo algo más pequeño que body. */
+  --text-subheadline: 400 15px/20px var(--font-sans); /* Equivale a Subheadline: subtítulos de fila, chips y metadatos principales, en ink-soft. */
+  --text-subheadline-strong: 600 15px/20px var(--font-sans); /* Subheadline en semibold: etiqueta de botones pequeños y de chips seleccionados. */
+  --text-footnote: 400 13px/18px var(--font-sans); /* Equivale a Footnote: metadatos, mensajes de ayuda y de error de un campo. Es el mínimo para texto de lectura. */
+  --text-caption-1: 400 12px/16px var(--font-sans); /* Equivale a Caption 1: pies de gráfico y notas secundarias. */
+  --text-caption-2: 600 11px/13px var(--font-sans); /* Equivale a Caption 2: etiqueta de tab bar. No se usa para texto de lectura. */
+  --text-eyebrow: 700 12px/16px var(--font-sans); /* Rótulo de grupo o de campo, en ink-soft. Se escribe en mayúsculas con text-transform: uppercase. */
+  --text-badge: 700 11px/14px var(--font-sans); /* Etiqueta de categoría dentro de una píldora. */
+}
+.display {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.large-title {
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 41px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.title-1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.title-2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.title-3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+.headline {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.callout {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.subheadline {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.subheadline-strong {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.footnote {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.caption-1 {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.caption-2 {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.badge {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}

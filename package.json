@@ -1,0 +1,17 @@
+{
+  "name": "ekoa-design-system",
+  "version": "0.1.0",
+  "description": "Design system de EKOA, app de iPhone de viajes sostenibles. Tokens en formato DTCG 2025.10 y componentes React.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/smoke.mjs",
+    "check": "npm run validate && npm run build && npm test"
+  },
+  "devDependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

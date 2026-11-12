@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EKOA · vista previa de componente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../dist/tokens.css" />
+  <link rel="stylesheet" href="../components/bundle.css" />
+  <style>html, body { margin: 0; min-height: 100%; }</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="../components/bundle.js"></script>
+<script>
+  // Vista previa de un componente: previews/frame.html?c=Button&theme=dark
+  var E = window.EKOA, h = React.createElement;
+  var params = new URLSearchParams(location.search);
+  function setTheme(t) { document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light'; }
+  setTheme(params.get('theme'));
+  window.addEventListener('message', function (e) { if (e.data && e.data.ekoaTheme) setTheme(e.data.ekoaTheme); });
+
+  var cap = { fontSize: 11, lineHeight: '13px', color: 'var(--ink-soft)' };
+  var noop = function () {};
+
+  var DEMOS = {
+    Icon: function () {
+      var names = ['compass', 'search', 'pin', 'person', 'chevronLeft', 'chevronRight', 'more', 'up', 'trash', 'pencil'];
+      function cell(n, filled) {
+        return h('div', { key: n + filled, style: { width: 78, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, color: filled ? 'var(--moss)' : 'var(--ink)' } },
+          h(E.Icon, { name: n, size: 24, filled: filled }), h('span', { style: cap }, n + (filled ? ' (activa)' : '')));
+      }
+      return h('div', { className: 'ek-preview', style: { gap: 12 } },
+        names.map(function (n) { return cell(n, false); }),
+        ['compass', 'pin', 'person'].map(function (n) { return cell(n, true); }));
+    },
+    Button: function () {
+      return h('div', { className: 'ek-preview-stack' },
+        h(E.Button, { block: true }, 'Generar viaje'),
+        h(E.Button, { block: true, loading: true }, 'Generando viaje…'),
+        h(E.Button, { block: true, variant: 'secondary' }, 'Editar itinerario'),
+        h(E.Button, { block: true, variant: 'destructive', icon: h(E.Icon, { name: 'trash', size: 20 }) }, 'Eliminar día'),
+        h('div', { style: { display: 'flex', gap: 12, alignItems: 'center' } },
+          h(E.Button, { size: 'sm' }, 'Guardar'),
+          h(E.Button, { size: 'sm', variant: 'secondary' }, 'Compartir'),
+          h(E.Button, { size: 'sm', variant: 'text' }, 'Ahora no')));
+    },
+    Chip: function () {
+      var st = React.useState({ Naturaleza: true, 'Gastronomía': false, 'Comunidad local': false, Senderismo: true });
+      function toggle(k) { var n = Object.assign({}, st[0]); n[k] = !n[k]; st[1](n); }
+      return h('div', { className: 'ek-preview' },
+        Object.keys(st[0]).map(function (k) { return h(E.Chip, { key: k, selected: st[0][k], onClick: function () { toggle(k); } }, k); }),
+        h(E.Chip, { tone: 'tinted' }, 'Ver más'));
+    },
+    Badge: function () {
+      return h('div', { className: 'ek-preview' },
+        h(E.Badge, { tone: 'nature' }, 'Naturaleza'),
+        h(E.Badge, { tone: 'food' }, 'Gastronomía'),
+        h(E.Badge, { tone: 'community' }, 'Comunidad local'));
+    },
+    SegmentedControl: function () {
+      return h('div', { className: 'ek-preview-stack' },
+        h(E.SegmentedControl, { 'aria-label': 'Vista del viaje', options: [{ value: 'list', label: 'Lista' }, { value: 'map', label: 'Mapa' }], defaultValue: 'list' }),
+        h(E.SegmentedControl, { 'aria-label': 'Perfil', options: [{ value: 'mem', label: 'Recuerdos' }, { value: 'com', label: 'Comunidad' }], defaultValue: 'mem' }));
+    },
+    Switch: function () {
+      return h('div', { className: 'ek-preview', style: { gap: 24 } },
+        h('label', { style: { display: 'flex', alignItems: 'center', gap: 12 } }, h(E.Switch, { 'aria-label': 'Ubicación' }), 'Apagado'),
+        h('label', { style: { display: 'flex', alignItems: 'center', gap: 12 } }, h(E.Switch, { defaultChecked: true, 'aria-label': 'Notificaciones' }), 'Encendido'));
+    },
+    TextField: function () {
+      return h('div', { className: 'ek-preview-stack', style: { gap: 16 } },
+        h(E.TextField, { label: 'Correo electrónico', placeholder: 'nombre@ejemplo.com', hint: 'Es opcional.', type: 'email' }),
+        h(E.TextField, { label: 'Nombre', defaultValue: 'Ana' }),
+        h(E.TextField, { label: 'Contraseña', type: 'password', defaultValue: 'abc', error: 'La contraseña debe tener al menos 4 caracteres.' }));
+    },
+    GroupedList: function () {
+      return h('div', { className: 'ek-preview-stack', style: { gap: 24 } },
+        h(E.GroupedList, { header: 'Cerca de ti' },
+          h(E.ListRow, { icon: 'pin', title: 'Cooperativa Oliva Verde', subtitle: 'Sierra de Cazorla · 2 h', onClick: noop }),
+          h(E.ListRow, { icon: 'pin', title: 'Bosque de Irati', subtitle: 'Navarra · 4 h', onClick: noop }),
+          h(E.ListRow, { icon: 'pin', title: 'Kayak silencioso en la Albufera', subtitle: 'Valencia · 3 h', onClick: noop })),
+        h(E.GroupedList, { header: 'Permisos', footer: 'Puedes cambiarlos cuando quieras en Ajustes.' },
+          h(E.ListRow, { title: 'Ubicación', subtitle: 'Para proponerte lugares cerca de ti', trailing: h(E.Switch, { defaultChecked: true, 'aria-label': 'Ubicación' }) }),
+          h(E.ListRow, { title: 'Notificaciones', subtitle: 'Avisos de tu viaje', trailing: h(E.Switch, { 'aria-label': 'Notificaciones' }) })));
+    },
+    ListRow: function () {
+      return h('div', { className: 'ek-preview-stack' },
+        h(E.GroupedList, null,
+          h(E.ListRow, { icon: 'compass', title: 'Plan exprés', subtitle: 'Un itinerario rápido cerca de ti', onClick: noop })));
+    },
+    NavigationBar: function () {
+      return h('div', { style: { display: 'flex', flexDirection: 'column', gap: 24, padding: '16px 0' } },
+        h('div', { className: 'ek-stage' },
+          h(E.NavigationBar, { title: 'Fin de semana en Cazorla', back: 'Viajes', trailing: h(E.Button, { size: 'sm', variant: 'text' }, 'Editar') })),
+        h('div', { className: 'ek-stage' },
+          h(E.NavigationBar, { title: 'Tus viajes', large: true, trailing: h(E.Button, { size: 'sm', variant: 'text', 'aria-label': 'Más opciones' }, h(E.Icon, { name: 'more', size: 24 })) })));
+    },
+    TabBar: function () {
+      var st = React.useState('trip');
+      return h('div', { className: 'ek-stage', style: { height: 110 } },
+        h('div', { style: { position: 'absolute', left: 0, right: 0, bottom: 0 } },
+          h(E.TabBar, { value: st[0], onChange: st[1], items: [
+            { id: 'guide', label: 'Guía', icon: 'compass' },
+            { id: 'trip', label: 'Viaje', icon: 'pin' },
+            { id: 'discover', label: 'Descubrir', icon: 'search' },
+            { id: 'profile', label: 'Perfil', icon: 'person' }] })));
+    },
+    Sheet: function () {
+      return h('div', { className: 'ek-stage', style: { height: 380 } },
+        h('div', { style: { padding: 16, color: 'var(--ink-soft)', fontSize: 15, lineHeight: '20px' } }, 'Día 2 · domingo'),
+        h(E.Sheet, { title: '¿Eliminar este día?', closeLabel: 'Cerrar' },
+          h('p', { style: { margin: '0 0 16px', color: 'var(--ink-soft)', fontSize: 16, lineHeight: '21px' } }, 'Se quitarán 3 actividades del itinerario.'),
+          h(E.Button, { block: true, variant: 'destructive' }, 'Eliminar día')));
+    }
+  };
+
+  var Demo = DEMOS[params.get('c')];
+  ReactDOM.createRoot(document.getElementById('root')).render(Demo ? h(Demo) : h('p', { style: { padding: 16 } }, 'Componente desconocido'));
+</script>
+</body>
+</html>

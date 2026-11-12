@@ -6,7 +6,7 @@ Design system de **EKOA**, una app de iPhone de viajes sostenibles. Sigue las co
 - **Componentes** en `components/`, con React 18 como global y tipos TypeScript.
 - **Guía de uso** (contenido, color, tipografía, forma, navegación, toque): [`docs/guidelines.md`](docs/guidelines.md).
 - **Catálogo de componentes**: [`docs/components.md`](docs/components.md).
-- **Vista visual**: abre `index.html` servido por HTTP (ver más abajo).
+- **Vista visual**: `index.html`, con secciones de color, tipografía, espaciado, radios, sombras, layout y componentes. Hay que servirla por HTTP (ver más abajo).
 
 ## Estructura
 
@@ -21,8 +21,10 @@ components/
   bundle.css                estilos de los componentes (necesita dist/tokens.css)
   index.d.ts                tipos
 docs/                       guía de uso y catálogo de componentes
+previews/                   portada y vistas previas de cada componente (se cargan en iframes)
+site/                       estilos y lógica de la página de documentación
 scripts/                    validate.mjs, build.mjs, smoke.mjs
-index.html                  página de documentación visual
+index.html                  página de documentación visual (barra lateral por secciones)
 ```
 
 ## Estándares que cumple

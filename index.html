@@ -1,110 +1,28 @@
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EKOA · Design system</title>
+  <meta name="description" content="Design system de EKOA: tokens DTCG, componentes React y guía de uso." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="dist/tokens.css" />
-  <link rel="stylesheet" href="components/bundle.css" />
-  <style>
-    .page { max-width: 960px; margin: 0 auto; padding: var(--space-24) var(--space-16) var(--space-40); }
-    .top { display: flex; justify-content: space-between; align-items: center; gap: var(--space-16); flex-wrap: wrap; }
-    .top p { margin: var(--space-4) 0 0; color: var(--ink-soft); }
-    h2.sec { font-family: var(--font-display); font-size: 22px; line-height: 28px; font-weight: 700; margin: var(--space-40) 0 var(--space-16); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: var(--space-12); }
-    .sw { background: var(--card); border-radius: var(--radius-md); overflow: hidden; box-shadow: inset 0 0 0 1px var(--hairline); }
-    .sw i { display: block; height: 56px; box-shadow: inset 0 -1px 0 var(--hairline); }
-    .sw div { padding: var(--space-8) var(--space-12) var(--space-12); }
-    .sw b { display: block; font-size: 15px; line-height: 20px; }
-    .sw code { color: var(--ink-soft); font-size: 12px; }
-    .row { display: flex; align-items: baseline; gap: var(--space-16); padding: var(--space-8) 0; border-bottom: .5px solid var(--hairline); }
-    .row code { flex: 0 0 170px; color: var(--ink-soft); font-size: 12px; }
-    .bars { display: flex; flex-wrap: wrap; gap: var(--space-16); align-items: flex-end; }
-    .bars span { display: block; background: var(--ink); }
-    .rad { width: 72px; height: 72px; background: var(--card-alt); box-shadow: inset 0 0 0 1px var(--hairline); }
-    .stage-wrap { display: flex; flex-wrap: wrap; gap: var(--space-24); align-items: flex-start; }
-    .stage { height: 520px; border-radius: var(--radius-lg); box-shadow: inset 0 0 0 1px var(--hairline); }
-    .note { color: var(--ink-soft); font-size: 13px; line-height: 18px; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400&family=Archivo:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site/site.css" />
 </head>
 <body>
-  <main class="page">
-    <div class="top">
-      <div>
-        <h1 class="large-title" style="margin:0">EKOA</h1>
-        <p>Design system · tokens DTCG 2025.10 · 12 componentes</p>
-      </div>
-      <div id="theme"></div>
-    </div>
-    <h2 class="sec">Color</h2>
-    <div class="grid" id="colors"></div>
-    <h2 class="sec">Tipografía</h2>
-    <div id="type"></div>
-    <h2 class="sec">Espaciado</h2>
-    <div class="bars" id="space"></div>
-    <h2 class="sec">Radios</h2>
-    <div class="bars" id="radius"></div>
-    <h2 class="sec">Componentes</h2>
-    <div class="stage-wrap" id="demo"></div>
-    <p class="note" id="msg"></p>
-  </main>
-
-  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-  <script src="components/bundle.js"></script>
-  <script>
-    const $ = (id) => document.getElementById(id);
-    const h = React.createElement, E = window.EKOA;
-    const setTheme = (t) => { document.documentElement.dataset.theme = t; };
-
-    function Demo() {
-      const [tab, setTab] = React.useState("discover");
-      const [sheet, setSheet] = React.useState(false);
-      return h("div", { className: "stage-wrap" },
-        h("div", { className: "ek-stage stage" },
-          h(E.NavigationBar, { title: "Tus viajes", large: true, trailing: h(E.Icon, { name: "more", title: "Más" }) }),
-          h("div", { style: { padding: "0 16px", display: "flex", flexDirection: "column", gap: 16 } },
-            h(E.SegmentedControl, { options: [{ value: "next", label: "Próximos" }, { value: "past", label: "Pasados" }], "aria-label": "Viajes" }),
-            h(E.GroupedList, { header: "Cerca de ti" },
-              h(E.ListRow, { icon: "pin", title: "Cooperativa Oliva Verde", subtitle: "Sierra de Cazorla · 2 h", trailing: h(E.Badge, { tone: "food" }, "Gastronomía"), onClick() {} }),
-              h(E.ListRow, { icon: "compass", title: "Ruta del río Borosa", subtitle: "Km 0 · Comercio justo", trailing: h(E.Badge, { tone: "nature" }, "Naturaleza"), onClick() {} })),
-            h("div", { style: { display: "flex", gap: 8, flexWrap: "wrap" } },
-              h(E.Chip, { selected: true }, "Naturaleza"), h(E.Chip, null, "Gastronomía"), h(E.Chip, { tone: "tinted" }, "Comunidad local")),
-            h(E.Button, { block: true, onClick: () => setSheet(true) }, "Generar viaje")),
-          h("div", { style: { position: "absolute", left: 0, right: 0, bottom: 0 } },
-            h(E.TabBar, { value: tab, onChange: setTab, items: [{ id: "discover", label: "Descubre", icon: "compass" }, { id: "trips", label: "Viajes", icon: "pin" }, { id: "profile", label: "Perfil", icon: "person" }] })),
-          sheet && h(E.Sheet, { title: "Editar itinerario", onClose: () => setSheet(false) },
-            h(E.TextField, { label: "Destino", hint: "Por ejemplo, Sierra de Cazorla", placeholder: "¿A dónde vas?" }))),
-        h("div", { className: "ek-stage", style: { width: 320, background: "transparent" } },
-          h("div", { className: "ek-preview-stack" },
-            h("div", { className: "ek-preview" }, h(E.Button, null, "Primario"), h(E.Button, { variant: "secondary" }, "Secundario"), h(E.Button, { variant: "destructive" }, "Eliminar día"), h(E.Button, { variant: "text" }, "Texto")),
-            h("div", { className: "ek-preview" }, h(E.Button, { loading: true }, "Generando viaje…"), h(E.Button, { disabled: true }, "Desactivado")),
-            h("div", { className: "ek-preview" }, h(E.Switch, { defaultChecked: true, "aria-label": "Avisos" }), h(E.Switch, { "aria-label": "Ubicación" })),
-            h(E.TextField, { label: "Destino", error: "Escribe un destino." }),
-            h("div", { className: "ek-preview" }, ["compass","search","pin","person","chevronLeft","chevronRight","more","up","trash","pencil"].map((n) => h(E.Icon, { key: n, name: n, title: n }))))));
-    }
-
-    ReactDOM.createRoot($("demo")).render(h(Demo));
-    ReactDOM.createRoot($("theme")).render(h(E.SegmentedControl, { options: [{ value: "light", label: "Claro" }, { value: "dark", label: "Oscuro" }], defaultValue: "light", onChange: setTheme, "aria-label": "Tema", className: "" }));
-    $("theme").style.width = "180px";
-
-    // Tokens: se leen de los .tokens.json (necesita servidor, p. ej. GitHub Pages o `npx serve`)
-    const leaf = (g) => Object.entries(g).filter(([k]) => !k.startsWith("$"));
-    Promise.all(["core", "theme-light"].map((f) => fetch(`tokens/${f}.tokens.json`).then((r) => r.json()))).then(([core, light]) => {
-      $("colors").innerHTML = leaf(light.color).map(([k, t]) =>
-        `<div class="sw"><i style="background:var(--${k})"></i><div><b>${k}</b><code>--${k}</code></div></div>`).join("");
-      $("type").innerHTML = leaf(core.text).map(([k, t]) => {
-        const fam = t.$value.fontFamily.includes("display") ? "display" : "sans";
-        return `<div class="row"><code>${k} · ${t.$value.fontSize.value}px</code><span class="${k}">${fam === "display" ? "Viaja con calma" : "Sierra de Cazorla · 2 h"}</span></div>`;
-      }).join("");
-      $("space").innerHTML = leaf(core.space).map(([k, t]) =>
-        `<div><span style="width:${t.$value.value}px;height:${t.$value.value}px"></span><code class="note">space-${k}</code></div>`).join("");
-      $("radius").innerHTML = leaf(core.radius).map(([k]) =>
-        `<div><div class="rad" style="border-radius:var(--radius-${k})"></div><code class="note">radius-${k}</code></div>`).join("");
-    }).catch(() => { $("msg").textContent = "Para ver colores y tipografía, sirve esta página por HTTP (GitHub Pages o `npx serve`): abrirla como archivo local bloquea la lectura de los tokens."; });
-  </script>
+  <header class="topbar">
+    <div><b>EKOA</b><span class="sub">Design system</span></div>
+    <a class="btn" id="repo" href="https://github.com/pablorogo14/ekoa-design-system" target="_blank" rel="noopener">Ver en GitHub</a>
+  </header>
+  <div class="shell">
+    <aside class="side">
+      <input class="search" id="q" type="search" placeholder="Buscar" aria-label="Buscar tokens y componentes" autocomplete="off" />
+      <ul class="results" id="results" hidden></ul>
+      <ul class="nav" id="nav"></ul>
+    </aside>
+    <main class="main"><div class="page"><div class="page-in" id="view"></div></div></main>
+  </div>
+  <script src="site/site.js"></script>
 </body>
 </html>

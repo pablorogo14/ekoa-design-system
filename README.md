@@ -12,9 +12,10 @@ Design system de **EKOA**, una app de iPhone de viajes sostenibles. Sigue las co
 
 ```
 tokens/
+  primitives.tokens.json    paletas de color por familia (neutral, gray, moss, teal, clay, red, sage, sky); el número es el tono
   core.tokens.json          tipografía, espaciado, radios, sombras, layout, fuentes
-  theme-light.tokens.json   colores, tema claro (con las notas de uso y contraste)
-  theme-dark.tokens.json    colores, tema oscuro (mismas claves que el claro)
+  theme-light.tokens.json   colores semánticos del tema claro (apuntan a primitivos; con notas de uso)
+  theme-dark.tokens.json    colores semánticos del tema oscuro (mismas claves que el claro)
 dist/tokens.css             variables CSS y clases tipográficas (generado)
 components/
   bundle.js                 define window.EKOA (necesita window.React)

@@ -1,295 +1,267 @@
 {
-  "$description": "EKOA — colores del tema claro (DTCG 2025.10). El tema oscuro tiene exactamente las mismas claves en theme-dark.tokens.json.",
+  "$description": "EKOA — colores semánticos del tema claro (DTCG 2025.10). Cada token apunta a un primitivo de palette.* (salvo los translúcidos, que llevan valor directo). El tema oscuro tiene exactamente las mismas claves que el claro.",
   "color": {
     "$type": "color",
-    "paper": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9294,
-          0.9098,
-          0.8745
-        ],
-        "hex": "#ede8df"
+    "surface": {
+      "base": {
+        "$value": "{palette.neutral.150}",
+        "$description": "Fondo de pantalla y de barras sólidas; equivale a systemGroupedBackground. Sobre él van ink, ink-soft, moss y clay-text; también es el texto sobre un relleno ink.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "paper"
+          }
+        }
       },
-      "$description": "Fondo de pantalla y de barras sólidas; equivale a systemGroupedBackground. Sobre él van ink, ink-soft, moss y clay-text; también es el texto sobre un relleno ink."
+      "raised": {
+        "$value": "{palette.neutral.50}",
+        "$description": "Superficie de tarjetas, listas agrupadas, campos de texto y burbujas de la IA; equivale a secondarySystemGroupedBackground. Sobre ella van ink, ink-soft y moss. En claro se aclaró hacia el blanco (antes #F4F0E8) para distinguirse de paper sin llegar a blanco puro.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "card"
+          }
+        }
+      },
+      "sunken": {
+        "$value": "{palette.neutral.300}",
+        "$description": "Superficie neutra secundaria: pista del segmented control, campos deshabilitados, badge neutro, notas y fondo del botón secundario, del chip tinted y del recuadro de icono de fila (los tres antes en moss-weak); equivale a tertiarySystemFill. Texto encima: text/primary (12:1 o más) o text/secondary (6:1 o más en ambos temas).",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "card-alt"
+          }
+        }
+      },
+      "bar": {
+        "$value": "{palette.neutral.150}",
+        "$description": "Fondo de la barra de navegación y la tab bar, con blur (saturate 180 %, blur 18 px) y un hairline de 0,5 px; equivale al material de barra de iOS. En claro ya no es translúcido — usa paper sólido, con el blur ambiental como resto decorativo sin efecto visible; en oscuro conserva la translucidez real.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "bar"
+          }
+        }
+      },
+      "scrim": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0784,
+            0.0863,
+            0.0549
+          ],
+          "alpha": 0.4,
+          "hex": "#14160e"
+        },
+        "$description": "Velo detrás de hojas modales.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "scrim"
+          }
+        }
+      }
     },
-    "card": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9843,
-          0.9725,
-          0.9451
-        ],
-        "hex": "#fbf8f1"
+    "text": {
+      "primary": {
+        "$value": "{palette.neutral.900}",
+        "$description": "Texto principal y títulos sobre paper, card y card-alt (12:1 o más en ambos temas); equivale a label. También el fondo del toast y, tras reducir el acento de color al mínimo, el relleno de los elementos interactivos y de marca: botón primario, chip seleccionado, burbuja del usuario, switch activo, pin del mapa, tab e icono de fila activos, day-cell activo, enlaces y anillo de foco (antes en moss). El texto sobre un relleno ink usa paper.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "ink"
+          }
+        }
       },
-      "$description": "Superficie de tarjetas, listas agrupadas, campos de texto y burbujas de la IA; equivale a secondarySystemGroupedBackground. Sobre ella van ink, ink-soft y moss. En claro se aclaró hacia el blanco (antes #F4F0E8) para distinguirse de paper sin llegar a blanco puro."
+      "secondary": {
+        "$value": "{palette.neutral.700}",
+        "$description": "Texto secundario, etiquetas y metadatos sobre surface/base, raised y sunken (4,5:1 o más en ambos temas); equivale a secondaryLabel. En claro es neutral/40, que da 6,7:1 sobre surface/sunken (antes, con un gris más claro, quedaba en 4,2:1).",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "ink-soft"
+          }
+        }
+      },
+      "decorative": {
+        "$value": "{palette.neutral.400}",
+        "$description": "Solo decorativo: chevrones y etiquetas de eje sin significado propio; equivale a tertiaryLabel. En claro da 2,1:1 sobre paper, así que no sirve para texto (tampoco para placeholders, que usan ink-soft) ni para iconos que informen; las tabs inactivas usan ink-soft.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "ink-faint"
+          }
+        }
+      }
     },
-    "card-alt": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.8863,
-          0.8627,
-          0.8078
-        ],
-        "hex": "#e2dcce"
+    "border": {
+      "default": {
+        "$value": "{palette.neutral.200}",
+        "$description": "Separadores de 0,5 px y tirador de hoja; equivale a separator. Es decorativo. El borde de los campos usa border/strong.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "hairline"
+          }
+        }
       },
-      "$description": "Superficie neutra secundaria: pista del segmented control, campos deshabilitados, badge neutro, notas y fondo del botón secundario, del chip tinted y del recuadro de icono de fila (los tres antes en moss-weak); equivale a tertiarySystemFill. Texto encima: ink (12:1 o más) o ink-soft — en claro, ink-soft sobre el card-alt actual da 4,2:1, por debajo del objetivo de 4,5:1 del sistema (el valor anterior de card-alt daba 4,8:1); en oscuro sigue en 4,7:1 o más. Aviso heredado del prototipo, no corregido en esta sincronización."
+      "strong": {
+        "$value": "{palette.neutral.500}",
+        "$description": "Borde de componentes que hay que poder ver: campos de texto, y otros contornos que identifican un control (3:1 o más sobre surface/base y raised en ambos temas). Los separadores y el tirador siguen usando border/default."
+      }
     },
-    "ink": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.1098,
-          0.1176,
-          0.0863
-        ],
-        "hex": "#1c1e16"
-      },
-      "$description": "Texto principal y títulos sobre paper, card y card-alt (12:1 o más en ambos temas); equivale a label. También el fondo del toast y, tras reducir el acento de color al mínimo, el relleno de los elementos interactivos y de marca: botón primario, chip seleccionado, burbuja del usuario, switch activo, pin del mapa, tab e icono de fila activos, day-cell activo, enlaces y anillo de foco (antes en moss). El texto sobre un relleno ink usa paper."
+    "action": {
+      "primary": {
+        "bg": {
+          "$value": "{palette.neutral.900}",
+          "$description": "Relleno de la acción principal y de los elementos interactivos y de marca: botón primario, chip seleccionado, switch activo, pin del mapa, tab activa y burbuja del usuario. Hoy coincide con text.primary."
+        },
+        "fg": {
+          "$value": "{palette.neutral.150}",
+          "$description": "Texto e iconos sobre action.primary.bg. Hoy coincide con surface.base."
+        }
+      }
     },
-    "ink-soft": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.3922,
-          0.4039,
-          0.3529
-        ],
-        "hex": "#64675a"
+    "control": {
+      "switch-off": {
+        "$value": "{palette.neutral.500}",
+        "$description": "Pista del switch apagado (3:1 o más sobre surface/base en ambos temas); la perilla es control/knob, que sobre esta pista da 3,9:1 en claro. El estado también lo comunica la posición de la perilla.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "switch-off"
+          }
+        }
       },
-      "$description": "Texto secundario, etiquetas y metadatos sobre paper y card (4,7:1 o más en ambos temas); equivale a secondaryLabel. Sobre el card-alt actual, en claro da 4,2:1 — por debajo de 4,5:1, ya que card-alt se oscureció después de fijar este valor; en oscuro sigue en 4,7:1 o más. El valor claro es más oscuro que el del prototipo original (#6E7165) para llegar a 4,5:1 sobre el card-alt de entonces."
+      "knob": {
+        "$value": "{palette.white}",
+        "$description": "Perilla del switch, blanca en ambos temas por el contraste con switch-off y con ink (switch encendido).",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "knob"
+          }
+        }
+      }
     },
-    "ink-faint": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.6627,
-          0.6745,
-          0.6118
-        ],
-        "hex": "#a9ac9c"
-      },
-      "$description": "Solo decorativo: chevrones y etiquetas de eje sin significado propio; equivale a tertiaryLabel. En claro da 2,1:1 sobre paper, así que no sirve para texto (tampoco para placeholders, que usan ink-soft) ni para iconos que informen; las tabs inactivas usan ink-soft."
+    "status": {
+      "danger": {
+        "accent": {
+          "$value": "{palette.red.500}",
+          "$description": "Relleno o icono de acciones destructivas y del nivel alto de afluencia (3:1 o más sobre surface/base y raised en ambos temas); equivale a systemRed. En claro usa red/60, algo más oscuro que el systemRed original para llegar a 3:1. No es color de texto ni de fondo de botón con texto blanco: usa status/danger/text sobre status/danger/subtle.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "danger"
+            }
+          }
+        },
+        "subtle": {
+          "$value": "{palette.red.200}",
+          "$description": "Fondo del botón destructivo (estilo tinted) y de avisos de error. Texto encima: danger-text.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "danger-weak"
+            }
+          }
+        },
+        "text": {
+          "$value": "{palette.red.600}",
+          "$description": "Texto de error o destructivo sobre paper, card y danger-weak (4,9:1 o más en claro, 5,3:1 o más en oscuro). Token añadido al prototipo.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "danger-text"
+            }
+          }
+        }
+      }
     },
-    "hairline": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9098,
-          0.8902,
-          0.8588
-        ],
-        "hex": "#e8e3db"
+    "category": {
+      "nature": {
+        "accent": {
+          "$value": "{palette.moss.600}",
+          "$description": "Acento de marca, reducido al mínimo en la app: solo la categoría Naturaleza (badge y portada por defecto) y el nivel medio del gráfico de afluencia. Ya no rellena botones, chips, switch, pin, tabs ni enlaces, y ya no representa el éxito — ver ink. En claro, moss pasó de un verde azulado (#3EA198) a un verde oliva (#626549): como texto directo ahora da 4,9:1 sobre paper y 5,7:1 sobre card, así que ya no hace falta la reserva a iconos/elementos grandes que tenía el valor anterior (~2,9:1). El valor de tema oscuro no se actualizó junto con ese cambio y sigue en el verde azulado anterior (#6EB9B2); confirmar con Pablo si debe alinearse o si la asimetría es intencionada. El texto sobre un relleno moss usaría moss-contrast, aunque hoy ningún componente rellena con moss.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "moss"
+            }
+          }
+        },
+        "subtle": {
+          "$value": "{palette.moss.200}",
+          "$description": "Fondo del badge y la portada por defecto de la categoría Naturaleza. Texto/icono encima: moss (5,3:1 en claro con el verde oliva actual, antes 2,7:1 con el verde azulado; 6,2:1 en oscuro).",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "moss-weak"
+            }
+          }
+        },
+        "on-accent": {
+          "$value": "{palette.neutral.50}",
+          "$description": "Texto e iconos sobre un relleno moss: texto claro en el tema claro (5,8:1) y teal oscuro en el oscuro (7,5:1). Hoy ningún componente de la app rellena con moss — esos rellenos pasaron a ink. Token sin uso activo; se conserva por si un futuro componente vuelve a rellenar con moss.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "moss-contrast"
+            }
+          }
+        }
       },
-      "$description": "Separadores de 0,5 px, borde de campo de 1 px y tirador de hoja; equivale a separator. Es decorativo: el borde del campo no lo identifica, lo hace su etiqueta visible."
+      "food": {
+        "accent": {
+          "$value": "{palette.clay.500}",
+          "$description": "Acento cálido para Gastronomía, avisos y el nivel medio de gráficos (barras de afluencia). Como relleno o gráfico da 4,1:1 o más sobre paper. No lo uses como texto sobre clay-weak en el tema claro (3,6:1): usa clay-text.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "clay"
+            }
+          }
+        },
+        "subtle": {
+          "$value": "{palette.clay.200}",
+          "$description": "Fondo del badge de Gastronomía y de avisos y resaltados cálidos. Texto encima: clay-text.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "clay-weak"
+            }
+          }
+        },
+        "text": {
+          "$value": "{palette.clay.600}",
+          "$description": "Texto de acento cálido sobre clay-weak, paper y card (4,8:1 o más en claro; en oscuro coincide con clay). Token añadido al prototipo.",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "clay-text"
+            }
+          }
+        }
+      }
     },
-    "moss": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.3843,
-          0.3961,
-          0.2863
-        ],
-        "hex": "#626549"
+    "map": {
+      "base": {
+        "$value": "{palette.neutral.150}",
+        "$description": "Fondo base de las ilustraciones de mapa (SVG dibujado a mano), tanto en la tarjeta de mapa como en el lienzo de mapa de un viaje.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-base"
+          }
+        }
       },
-      "$description": "Acento de marca, reducido al mínimo en la app: solo la categoría Naturaleza (badge y portada por defecto) y el nivel medio del gráfico de afluencia. Ya no rellena botones, chips, switch, pin, tabs ni enlaces, y ya no representa el éxito — ver ink. En claro, moss pasó de un verde azulado (#3EA198) a un verde oliva (#626549): como texto directo ahora da 4,9:1 sobre paper y 5,7:1 sobre card, así que ya no hace falta la reserva a iconos/elementos grandes que tenía el valor anterior (~2,9:1). El valor de tema oscuro no se actualizó junto con ese cambio y sigue en el verde azulado anterior (#6EB9B2); confirmar con Pablo si debe alinearse o si la asimetría es intencionada. El texto sobre un relleno moss usaría moss-contrast, aunque hoy ningún componente rellena con moss."
-    },
-    "moss-weak": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9098,
-          0.9216,
-          0.8118
-        ],
-        "hex": "#e8ebcf"
+      "road": {
+        "$value": "{palette.neutral.50}",
+        "$description": "Trazos de carretera y sendero dentro de las ilustraciones de mapa, sobre map-base.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-road"
+          }
+        }
       },
-      "$description": "Fondo del badge y la portada por defecto de la categoría Naturaleza. Texto/icono encima: moss (5,3:1 en claro con el verde oliva actual, antes 2,7:1 con el verde azulado; 6,2:1 en oscuro)."
-    },
-    "moss-contrast": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.0431,
-          0.1412,
-          0.1333
-        ],
-        "hex": "#0b2422"
+      "park": {
+        "$value": "{palette.sage.300}",
+        "$description": "Áreas verdes (parques, bosque) dentro de las ilustraciones de mapa. No es moss: es un tono propio, más apagado, pensado para grandes superficies de fondo.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-park"
+          }
+        }
       },
-      "$description": "Pensado para texto e iconos sobre un relleno moss (5,2:1 en claro, 7,5:1 en oscuro), pero hoy ningún componente de la app rellena con moss — esos rellenos pasaron a ink. Token sin uso activo; se conserva por si un futuro componente vuelve a rellenar con moss."
-    },
-    "clay": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.7098,
-          0.3843,
-          0.1725
-        ],
-        "hex": "#b5622c"
-      },
-      "$description": "Acento cálido para Gastronomía, avisos y el nivel medio de gráficos (barras de afluencia). Como relleno o gráfico da 4,1:1 o más sobre paper. No lo uses como texto sobre clay-weak en el tema claro (3,6:1): usa clay-text."
-    },
-    "clay-weak": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9529,
-          0.8941,
-          0.8392
-        ],
-        "hex": "#f3e4d6"
-      },
-      "$description": "Fondo del badge de Gastronomía y de avisos y resaltados cálidos. Texto encima: clay-text."
-    },
-    "clay-text": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.5882,
-          0.3137,
-          0.1216
-        ],
-        "hex": "#96501f"
-      },
-      "$description": "Texto de acento cálido sobre clay-weak, paper y card (4,8:1 o más en claro; en oscuro coincide con clay). Token añadido al prototipo."
-    },
-    "danger": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          1.0,
-          0.2314,
-          0.1882
-        ],
-        "hex": "#ff3b30"
-      },
-      "$description": "Relleno o icono de acciones destructivas y del nivel alto de afluencia (3:1 o más sobre paper y card en ambos temas); equivale a systemRed. No es color de texto ni de fondo de botón con texto blanco (3,6:1): usa danger-text sobre danger-weak."
-    },
-    "danger-weak": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          1.0,
-          0.898,
-          0.8902
-        ],
-        "hex": "#ffe5e3"
-      },
-      "$description": "Fondo del botón destructivo (estilo tinted) y de avisos de error. Texto encima: danger-text."
-    },
-    "danger-text": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.7529,
-          0.1529,
-          0.1059
-        ],
-        "hex": "#c0271b"
-      },
-      "$description": "Texto de error o destructivo sobre paper, card y danger-weak (4,9:1 o más en claro, 5,3:1 o más en oscuro). Token añadido al prototipo."
-    },
-    "switch-off": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9137,
-          0.9137,
-          0.9176
-        ],
-        "hex": "#e9e9ea"
-      },
-      "$description": "Pista del switch apagado; la perilla es knob. El estado también lo comunica la posición de la perilla."
-    },
-    "knob": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          1.0,
-          1.0,
-          1.0
-        ],
-        "hex": "#ffffff"
-      },
-      "$description": "Perilla del switch, blanca en ambos temas por el contraste con switch-off y con ink (switch encendido)."
-    },
-    "bar": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9294,
-          0.9098,
-          0.8745
-        ],
-        "hex": "#ede8df"
-      },
-      "$description": "Fondo de la barra de navegación y la tab bar, con blur (saturate 180 %, blur 18 px) y un hairline de 0,5 px; equivale al material de barra de iOS. En claro ya no es translúcido — usa paper sólido, con el blur ambiental como resto decorativo sin efecto visible; en oscuro conserva la translucidez real."
-    },
-    "scrim": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.0784,
-          0.0863,
-          0.0549
-        ],
-        "alpha": 0.4,
-        "hex": "#14160e"
-      },
-      "$description": "Velo detrás de hojas modales."
-    },
-    "map-base": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9412,
-          0.9176,
-          0.8549
-        ],
-        "hex": "#f0eada"
-      },
-      "$description": "Fondo base de las ilustraciones de mapa (SVG dibujado a mano), tanto en la tarjeta de mapa como en el lienzo de mapa de un viaje."
-    },
-    "map-park": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.7882,
-          0.851,
-          0.749
-        ],
-        "hex": "#c9d9bf"
-      },
-      "$description": "Áreas verdes (parques, bosque) dentro de las ilustraciones de mapa. No es moss: es un tono propio, más apagado, pensado para grandes superficies de fondo."
-    },
-    "map-water": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.7333,
-          0.8314,
-          0.8902
-        ],
-        "hex": "#bbd4e3"
-      },
-      "$description": "Masas y trazos de agua dentro de las ilustraciones de mapa."
-    },
-    "map-road": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9882,
-          0.9804,
-          0.9529
-        ],
-        "hex": "#fcfaf3"
-      },
-      "$description": "Trazos de carretera y sendero dentro de las ilustraciones de mapa, sobre map-base."
+      "water": {
+        "$value": "{palette.sky.300}",
+        "$description": "Masas y trazos de agua dentro de las ilustraciones de mapa.",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-water"
+          }
+        }
+      }
     }
   }
 }

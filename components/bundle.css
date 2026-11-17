@@ -59,7 +59,7 @@ button { font: inherit; -webkit-appearance: none; appearance: none; }
 .ek-field { display: block; }
 .ek-field-label { display: block; margin-bottom: var(--space-8); color: var(--ink-soft); font-size: 12px; line-height: 16px;
   font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.ek-input { display: block; width: 100%; min-height: 48px; padding: 0 var(--space-16); border: 1px solid var(--hairline);
+.ek-input { display: block; width: 100%; min-height: 48px; padding: 0 var(--space-16); border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-sm); background: var(--card); color: var(--ink); font: inherit; font-size: 17px; line-height: 22px; }
 .ek-input::placeholder { color: var(--ink-soft); opacity: 1; }
 .ek-input:disabled { background: var(--card-alt); color: var(--ink-soft); -webkit-text-fill-color: var(--ink-soft); opacity: 1; }

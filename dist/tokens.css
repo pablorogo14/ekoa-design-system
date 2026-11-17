@@ -1,58 +1,197 @@
 /* EKOA — generado por scripts/build.mjs desde tokens/*.tokens.json. No editar a mano. */
+/* Primitivos: paletas por familia (el número es el tono, luminosidad OKLCH 0–100). Los temas no los usan directamente. */
+:root {
+  --palette-neutral-50: #fcfaf3;
+  --palette-neutral-100: #f1f0e6;
+  --palette-neutral-150: #f0eada;
+  --palette-neutral-200: #e8e3db;
+  --palette-neutral-300: #e2dcce;
+  --palette-neutral-400: #a9ac9c;
+  --palette-neutral-500: #80836e;
+  --palette-neutral-600: #71745f;
+  --palette-neutral-700: #46493e;
+  --palette-neutral-800: #3a3d33;
+  --palette-neutral-850: #262a1c;
+  --palette-neutral-900: #1c1e16;
+  --palette-neutral-950: #14160f;
+  --palette-moss-50: #fafceb; /* generado, sin uso */
+  --palette-moss-100: #f5f7e6; /* generado, sin uso */
+  --palette-moss-200: #e8ebcf;
+  --palette-moss-300: #d4d7bb; /* generado, sin uso */
+  --palette-moss-400: #a1a488; /* generado, sin uso */
+  --palette-moss-500: #727559; /* generado, sin uso */
+  --palette-moss-600: #626549;
+  --palette-moss-700: #414233; /* generado, sin uso */
+  --palette-moss-800: #262719; /* generado, sin uso */
+  --palette-moss-900: #1a1b0d; /* generado, sin uso */
+  --palette-moss-950: #0b0c02; /* generado, sin uso */
+  --palette-teal-50: #ebfffd; /* generado, sin uso */
+  --palette-teal-100: #d6fffa; /* generado, sin uso */
+  --palette-teal-200: #c4f0eb; /* generado, sin uso */
+  --palette-teal-300: #b3ded9; /* generado, sin uso */
+  --palette-teal-400: #6eb9b2;
+  --palette-teal-500: #487e77; /* generado, sin uso */
+  --palette-teal-600: #335c57; /* generado, sin uso */
+  --palette-teal-700: #264843; /* generado, sin uso */
+  --palette-teal-800: #17302c;
+  --palette-teal-900: #0b201d;
+  --palette-teal-950: #040d0b; /* generado, sin uso */
+  --palette-clay-50: #fff9f3; /* generado, sin uso */
+  --palette-clay-100: #fcf3eb; /* generado, sin uso */
+  --palette-clay-200: #f3e4d6;
+  --palette-clay-300: #eecdb1; /* generado, sin uso */
+  --palette-clay-400: #e08a4f;
+  --palette-clay-500: #b5622c;
+  --palette-clay-600: #96501f;
+  --palette-clay-700: #59381d; /* generado, sin uso */
+  --palette-clay-800: #3a2a1c;
+  --palette-clay-900: #211810; /* generado, sin uso */
+  --palette-clay-950: #110903; /* generado, sin uso */
+  --palette-red-50: #fff8f8; /* generado, sin uso */
+  --palette-red-100: #fff2f0; /* generado, sin uso */
+  --palette-red-200: #ffe5e3;
+  --palette-red-300: #ff6e64;
+  --palette-red-400: #ff3b30;
+  --palette-red-500: #e43227;
+  --palette-red-600: #c0271b;
+  --palette-red-700: #6a2a23; /* generado, sin uso */
+  --palette-red-800: #3a2320;
+  --palette-red-900: #231614; /* generado, sin uso */
+  --palette-red-950: #130706; /* generado, sin uso */
+  --palette-sage-50: #f4feee; /* generado, sin uso */
+  --palette-sage-100: #eff9e9; /* generado, sin uso */
+  --palette-sage-200: #dfe9d9; /* generado, sin uso */
+  --palette-sage-300: #c9d9bf;
+  --palette-sage-400: #95a791; /* generado, sin uso */
+  --palette-sage-500: #657965; /* generado, sin uso */
+  --palette-sage-600: #455a49; /* generado, sin uso */
+  --palette-sage-700: #2e4334;
+  --palette-sage-800: #1e2921; /* generado, sin uso */
+  --palette-sage-900: #121d15; /* generado, sin uso */
+  --palette-sage-950: #040d06; /* generado, sin uso */
+  --palette-sky-50: #f5fbff; /* generado, sin uso */
+  --palette-sky-100: #ebf7ff; /* generado, sin uso */
+  --palette-sky-200: #d9e8f1; /* generado, sin uso */
+  --palette-sky-300: #bbd4e3;
+  --palette-sky-400: #8da5b4; /* generado, sin uso */
+  --palette-sky-500: #5e7685; /* generado, sin uso */
+  --palette-sky-600: #405766; /* generado, sin uso */
+  --palette-sky-700: #243b49;
+  --palette-sky-800: #1b2830; /* generado, sin uso */
+  --palette-sky-900: #0f1b23; /* generado, sin uso */
+  --palette-sky-950: #030c13; /* generado, sin uso */
+  --palette-white: #ffffff;
+}
+/* Semánticos: lo que usan los componentes. Cada tema apunta a un primitivo distinto. */
 :root, [data-theme="light"] {
-  --paper: #ede8df; /* Fondo de pantalla y de barras sólidas; equivale a systemGroupedBackground. Sobre él van ink, ink-soft, moss y clay-text; también es el texto sobre un relleno ink. */
-  --card: #fbf8f1; /* Superficie de tarjetas, listas agrupadas, campos de texto y burbujas de la IA; equivale a secondarySystemGroupedBackground. Sobre ella van ink, ink-soft y moss. En claro se aclaró hacia el blanco (antes #F4F0E8) para distinguirse de paper sin llegar a blanco puro. */
-  --card-alt: #e2dcce; /* Superficie neutra secundaria: pista del segmented control, campos deshabilitados, badge neutro, notas y fondo del botón secundario, del chip tinted y del recuadro de icono de fila (los tres antes en moss-weak); equivale a tertiarySystemFill. Texto encima: ink (12:1 o más) o ink-soft — en claro, ink-soft sobre el card-alt actual da 4,2:1, por debajo del objetivo de 4,5:1 del sistema (el valor anterior de card-alt daba 4,8:1); en oscuro sigue en 4,7:1 o más. Aviso heredado del prototipo, no corregido en esta sincronización. */
-  --ink: #1c1e16; /* Texto principal y títulos sobre paper, card y card-alt (12:1 o más en ambos temas); equivale a label. También el fondo del toast y, tras reducir el acento de color al mínimo, el relleno de los elementos interactivos y de marca: botón primario, chip seleccionado, burbuja del usuario, switch activo, pin del mapa, tab e icono de fila activos, day-cell activo, enlaces y anillo de foco (antes en moss). El texto sobre un relleno ink usa paper. */
-  --ink-soft: #64675a; /* Texto secundario, etiquetas y metadatos sobre paper y card (4,7:1 o más en ambos temas); equivale a secondaryLabel. Sobre el card-alt actual, en claro da 4,2:1 — por debajo de 4,5:1, ya que card-alt se oscureció después de fijar este valor; en oscuro sigue en 4,7:1 o más. El valor claro es más oscuro que el del prototipo original (#6E7165) para llegar a 4,5:1 sobre el card-alt de entonces. */
-  --ink-faint: #a9ac9c; /* Solo decorativo: chevrones y etiquetas de eje sin significado propio; equivale a tertiaryLabel. En claro da 2,1:1 sobre paper, así que no sirve para texto (tampoco para placeholders, que usan ink-soft) ni para iconos que informen; las tabs inactivas usan ink-soft. */
-  --hairline: #e8e3db; /* Separadores de 0,5 px, borde de campo de 1 px y tirador de hoja; equivale a separator. Es decorativo: el borde del campo no lo identifica, lo hace su etiqueta visible. */
-  --moss: #626549; /* Acento de marca, reducido al mínimo en la app: solo la categoría Naturaleza (badge y portada por defecto) y el nivel medio del gráfico de afluencia. Ya no rellena botones, chips, switch, pin, tabs ni enlaces, y ya no representa el éxito — ver ink. En claro, moss pasó de un verde azulado (#3EA198) a un verde oliva (#626549): como texto directo ahora da 4,9:1 sobre paper y 5,7:1 sobre card, así que ya no hace falta la reserva a iconos/elementos grandes que tenía el valor anterior (~2,9:1). El valor de tema oscuro no se actualizó junto con ese cambio y sigue en el verde azulado anterior (#6EB9B2); confirmar con Pablo si debe alinearse o si la asimetría es intencionada. El texto sobre un relleno moss usaría moss-contrast, aunque hoy ningún componente rellena con moss. */
-  --moss-weak: #e8ebcf; /* Fondo del badge y la portada por defecto de la categoría Naturaleza. Texto/icono encima: moss (5,3:1 en claro con el verde oliva actual, antes 2,7:1 con el verde azulado; 6,2:1 en oscuro). */
-  --moss-contrast: #0b2422; /* Pensado para texto e iconos sobre un relleno moss (5,2:1 en claro, 7,5:1 en oscuro), pero hoy ningún componente de la app rellena con moss — esos rellenos pasaron a ink. Token sin uso activo; se conserva por si un futuro componente vuelve a rellenar con moss. */
-  --clay: #b5622c; /* Acento cálido para Gastronomía, avisos y el nivel medio de gráficos (barras de afluencia). Como relleno o gráfico da 4,1:1 o más sobre paper. No lo uses como texto sobre clay-weak en el tema claro (3,6:1): usa clay-text. */
-  --clay-weak: #f3e4d6; /* Fondo del badge de Gastronomía y de avisos y resaltados cálidos. Texto encima: clay-text. */
-  --clay-text: #96501f; /* Texto de acento cálido sobre clay-weak, paper y card (4,8:1 o más en claro; en oscuro coincide con clay). Token añadido al prototipo. */
-  --danger: #ff3b30; /* Relleno o icono de acciones destructivas y del nivel alto de afluencia (3:1 o más sobre paper y card en ambos temas); equivale a systemRed. No es color de texto ni de fondo de botón con texto blanco (3,6:1): usa danger-text sobre danger-weak. */
-  --danger-weak: #ffe5e3; /* Fondo del botón destructivo (estilo tinted) y de avisos de error. Texto encima: danger-text. */
-  --danger-text: #c0271b; /* Texto de error o destructivo sobre paper, card y danger-weak (4,9:1 o más en claro, 5,3:1 o más en oscuro). Token añadido al prototipo. */
-  --switch-off: #e9e9ea; /* Pista del switch apagado; la perilla es knob. El estado también lo comunica la posición de la perilla. */
-  --knob: #ffffff; /* Perilla del switch, blanca en ambos temas por el contraste con switch-off y con ink (switch encendido). */
-  --bar: #ede8df; /* Fondo de la barra de navegación y la tab bar, con blur (saturate 180 %, blur 18 px) y un hairline de 0,5 px; equivale al material de barra de iOS. En claro ya no es translúcido — usa paper sólido, con el blur ambiental como resto decorativo sin efecto visible; en oscuro conserva la translucidez real. */
-  --scrim: rgba(20,22,14,0.4); /* Velo detrás de hojas modales. */
-  --map-base: #f0eada; /* Fondo base de las ilustraciones de mapa (SVG dibujado a mano), tanto en la tarjeta de mapa como en el lienzo de mapa de un viaje. */
-  --map-park: #c9d9bf; /* Áreas verdes (parques, bosque) dentro de las ilustraciones de mapa. No es moss: es un tono propio, más apagado, pensado para grandes superficies de fondo. */
-  --map-water: #bbd4e3; /* Masas y trazos de agua dentro de las ilustraciones de mapa. */
-  --map-road: #fcfaf3; /* Trazos de carretera y sendero dentro de las ilustraciones de mapa, sobre map-base. */
+  --color-surface-base: var(--palette-neutral-150); /* Fondo de pantalla y de barras sólidas; equivale a systemGroupedBackground. Sobre él van ink, ink-soft, moss y clay-text; también es el texto sobre un relleno ink. */
+  --color-surface-raised: var(--palette-neutral-50); /* Superficie de tarjetas, listas agrupadas, campos de texto y burbujas de la IA; equivale a secondarySystemGroupedBackground. Sobre ella van ink, ink-soft y moss. En claro se aclaró hacia el blanco (antes #F4F0E8) para distinguirse de paper sin llegar a blanco puro. */
+  --color-surface-sunken: var(--palette-neutral-300); /* Superficie neutra secundaria: pista del segmented control, campos deshabilitados, badge neutro, notas y fondo del botón secundario, del chip tinted y del recuadro de icono de fila (los tres antes en moss-weak); equivale a tertiarySystemFill. Texto encima: text/primary (12:1 o más) o text/secondary (6:1 o más en ambos temas). */
+  --color-surface-bar: var(--palette-neutral-150); /* Fondo de la barra de navegación y la tab bar, con blur (saturate 180 %, blur 18 px) y un hairline de 0,5 px; equivale al material de barra de iOS. En claro ya no es translúcido — usa paper sólido, con el blur ambiental como resto decorativo sin efecto visible; en oscuro conserva la translucidez real. */
+  --color-surface-scrim: rgba(20,22,14,0.4); /* Velo detrás de hojas modales. */
+  --color-text-primary: var(--palette-neutral-900); /* Texto principal y títulos sobre paper, card y card-alt (12:1 o más en ambos temas); equivale a label. También el fondo del toast y, tras reducir el acento de color al mínimo, el relleno de los elementos interactivos y de marca: botón primario, chip seleccionado, burbuja del usuario, switch activo, pin del mapa, tab e icono de fila activos, day-cell activo, enlaces y anillo de foco (antes en moss). El texto sobre un relleno ink usa paper. */
+  --color-text-secondary: var(--palette-neutral-700); /* Texto secundario, etiquetas y metadatos sobre surface/base, raised y sunken (4,5:1 o más en ambos temas); equivale a secondaryLabel. En claro es neutral/40, que da 6,7:1 sobre surface/sunken (antes, con un gris más claro, quedaba en 4,2:1). */
+  --color-text-decorative: var(--palette-neutral-400); /* Solo decorativo: chevrones y etiquetas de eje sin significado propio; equivale a tertiaryLabel. En claro da 2,1:1 sobre paper, así que no sirve para texto (tampoco para placeholders, que usan ink-soft) ni para iconos que informen; las tabs inactivas usan ink-soft. */
+  --color-border-default: var(--palette-neutral-200); /* Separadores de 0,5 px y tirador de hoja; equivale a separator. Es decorativo. El borde de los campos usa border/strong. */
+  --color-border-strong: var(--palette-neutral-500); /* Borde de componentes que hay que poder ver: campos de texto, y otros contornos que identifican un control (3:1 o más sobre surface/base y raised en ambos temas). Los separadores y el tirador siguen usando border/default. */
+  --color-action-primary-bg: var(--palette-neutral-900); /* Relleno de la acción principal y de los elementos interactivos y de marca: botón primario, chip seleccionado, switch activo, pin del mapa, tab activa y burbuja del usuario. Hoy coincide con text.primary. */
+  --color-action-primary-fg: var(--palette-neutral-150); /* Texto e iconos sobre action.primary.bg. Hoy coincide con surface.base. */
+  --color-control-switch-off: var(--palette-neutral-500); /* Pista del switch apagado (3:1 o más sobre surface/base en ambos temas); la perilla es control/knob, que sobre esta pista da 3,9:1 en claro. El estado también lo comunica la posición de la perilla. */
+  --color-control-knob: var(--palette-white); /* Perilla del switch, blanca en ambos temas por el contraste con switch-off y con ink (switch encendido). */
+  --color-status-danger-accent: var(--palette-red-500); /* Relleno o icono de acciones destructivas y del nivel alto de afluencia (3:1 o más sobre surface/base y raised en ambos temas); equivale a systemRed. En claro usa red/60, algo más oscuro que el systemRed original para llegar a 3:1. No es color de texto ni de fondo de botón con texto blanco: usa status/danger/text sobre status/danger/subtle. */
+  --color-status-danger-subtle: var(--palette-red-200); /* Fondo del botón destructivo (estilo tinted) y de avisos de error. Texto encima: danger-text. */
+  --color-status-danger-text: var(--palette-red-600); /* Texto de error o destructivo sobre paper, card y danger-weak (4,9:1 o más en claro, 5,3:1 o más en oscuro). Token añadido al prototipo. */
+  --color-category-nature-accent: var(--palette-moss-600); /* Acento de marca, reducido al mínimo en la app: solo la categoría Naturaleza (badge y portada por defecto) y el nivel medio del gráfico de afluencia. Ya no rellena botones, chips, switch, pin, tabs ni enlaces, y ya no representa el éxito — ver ink. En claro, moss pasó de un verde azulado (#3EA198) a un verde oliva (#626549): como texto directo ahora da 4,9:1 sobre paper y 5,7:1 sobre card, así que ya no hace falta la reserva a iconos/elementos grandes que tenía el valor anterior (~2,9:1). El valor de tema oscuro no se actualizó junto con ese cambio y sigue en el verde azulado anterior (#6EB9B2); confirmar con Pablo si debe alinearse o si la asimetría es intencionada. El texto sobre un relleno moss usaría moss-contrast, aunque hoy ningún componente rellena con moss. */
+  --color-category-nature-subtle: var(--palette-moss-200); /* Fondo del badge y la portada por defecto de la categoría Naturaleza. Texto/icono encima: moss (5,3:1 en claro con el verde oliva actual, antes 2,7:1 con el verde azulado; 6,2:1 en oscuro). */
+  --color-category-nature-on-accent: var(--palette-neutral-50); /* Texto e iconos sobre un relleno moss: texto claro en el tema claro (5,8:1) y teal oscuro en el oscuro (7,5:1). Hoy ningún componente de la app rellena con moss — esos rellenos pasaron a ink. Token sin uso activo; se conserva por si un futuro componente vuelve a rellenar con moss. */
+  --color-category-food-accent: var(--palette-clay-500); /* Acento cálido para Gastronomía, avisos y el nivel medio de gráficos (barras de afluencia). Como relleno o gráfico da 4,1:1 o más sobre paper. No lo uses como texto sobre clay-weak en el tema claro (3,6:1): usa clay-text. */
+  --color-category-food-subtle: var(--palette-clay-200); /* Fondo del badge de Gastronomía y de avisos y resaltados cálidos. Texto encima: clay-text. */
+  --color-category-food-text: var(--palette-clay-600); /* Texto de acento cálido sobre clay-weak, paper y card (4,8:1 o más en claro; en oscuro coincide con clay). Token añadido al prototipo. */
+  --color-map-base: var(--palette-neutral-150); /* Fondo base de las ilustraciones de mapa (SVG dibujado a mano), tanto en la tarjeta de mapa como en el lienzo de mapa de un viaje. */
+  --color-map-road: var(--palette-neutral-50); /* Trazos de carretera y sendero dentro de las ilustraciones de mapa, sobre map-base. */
+  --color-map-park: var(--palette-sage-300); /* Áreas verdes (parques, bosque) dentro de las ilustraciones de mapa. No es moss: es un tono propio, más apagado, pensado para grandes superficies de fondo. */
+  --color-map-water: var(--palette-sky-300); /* Masas y trazos de agua dentro de las ilustraciones de mapa. */
+  /* Alias heredados (nombres anteriores): se mantienen para no romper componentes ni código existente. */
+  --paper: var(--color-surface-base);
+  --card: var(--color-surface-raised);
+  --card-alt: var(--color-surface-sunken);
+  --bar: var(--color-surface-bar);
+  --scrim: var(--color-surface-scrim);
+  --ink: var(--color-text-primary);
+  --ink-soft: var(--color-text-secondary);
+  --ink-faint: var(--color-text-decorative);
+  --hairline: var(--color-border-default);
+  --switch-off: var(--color-control-switch-off);
+  --knob: var(--color-control-knob);
+  --danger: var(--color-status-danger-accent);
+  --danger-weak: var(--color-status-danger-subtle);
+  --danger-text: var(--color-status-danger-text);
+  --moss: var(--color-category-nature-accent);
+  --moss-weak: var(--color-category-nature-subtle);
+  --moss-contrast: var(--color-category-nature-on-accent);
+  --clay: var(--color-category-food-accent);
+  --clay-weak: var(--color-category-food-subtle);
+  --clay-text: var(--color-category-food-text);
+  --map-base: var(--color-map-base);
+  --map-road: var(--color-map-road);
+  --map-park: var(--color-map-park);
+  --map-water: var(--color-map-water);
   --shadow-sheet: 0 -10px 26px rgba(0,0,0,0.14); /* Hoja inferior arrastrable del mapa. */
   --shadow-float: 0 2px 10px rgba(0,0,0,0.1); /* Controles flotantes sobre el mapa. */
   --shadow-segment: 0 1px 3px rgba(0,0,0,0.14); /* Segmento seleccionado de un segmented control. */
 }
 [data-theme="dark"] {
-  --paper: #14160f;
-  --card: #1f2217;
-  --card-alt: #262a1c;
-  --ink: #f1f0e6;
-  --ink-soft: #a6a996;
-  --ink-faint: #71745f;
-  --hairline: #33362a;
-  --moss: #6eb9b2;
-  --moss-weak: #17302c;
-  --moss-contrast: #0b201d;
-  --clay: #e08a4f;
-  --clay-weak: #3a2a1c;
-  --clay-text: #e08a4f;
-  --danger: #ff453a;
-  --danger-weak: #3a2320;
-  --danger-text: #ff6e64;
-  --switch-off: #3a3d33;
-  --knob: #ffffff;
-  --bar: rgba(20,22,15,0.78);
-  --scrim: rgba(0,0,0,0.55);
-  --map-base: #2a2b21;
-  --map-park: #2e4334;
-  --map-water: #243b49;
-  --map-road: #3a3c2f;
+  --color-surface-base: var(--palette-neutral-950);
+  --color-surface-raised: var(--palette-neutral-900);
+  --color-surface-sunken: var(--palette-neutral-850);
+  --color-surface-bar: rgba(20,22,15,0.78);
+  --color-surface-scrim: rgba(0,0,0,0.55);
+  --color-text-primary: var(--palette-neutral-100);
+  --color-text-secondary: var(--palette-neutral-400);
+  --color-text-decorative: var(--palette-neutral-600);
+  --color-border-default: var(--palette-neutral-800);
+  --color-border-strong: var(--palette-neutral-500);
+  --color-action-primary-bg: var(--palette-neutral-100);
+  --color-action-primary-fg: var(--palette-neutral-950);
+  --color-control-switch-off: var(--palette-neutral-500);
+  --color-control-knob: var(--palette-white);
+  --color-status-danger-accent: var(--palette-red-400);
+  --color-status-danger-subtle: var(--palette-red-800);
+  --color-status-danger-text: var(--palette-red-300);
+  --color-category-nature-accent: var(--palette-teal-400);
+  --color-category-nature-subtle: var(--palette-teal-800);
+  --color-category-nature-on-accent: var(--palette-teal-900);
+  --color-category-food-accent: var(--palette-clay-400);
+  --color-category-food-subtle: var(--palette-clay-800);
+  --color-category-food-text: var(--palette-clay-400);
+  --color-map-base: var(--palette-neutral-850);
+  --color-map-road: var(--palette-neutral-800);
+  --color-map-park: var(--palette-sage-700);
+  --color-map-water: var(--palette-sky-700);
+  --paper: var(--color-surface-base);
+  --card: var(--color-surface-raised);
+  --card-alt: var(--color-surface-sunken);
+  --bar: var(--color-surface-bar);
+  --scrim: var(--color-surface-scrim);
+  --ink: var(--color-text-primary);
+  --ink-soft: var(--color-text-secondary);
+  --ink-faint: var(--color-text-decorative);
+  --hairline: var(--color-border-default);
+  --switch-off: var(--color-control-switch-off);
+  --knob: var(--color-control-knob);
+  --danger: var(--color-status-danger-accent);
+  --danger-weak: var(--color-status-danger-subtle);
+  --danger-text: var(--color-status-danger-text);
+  --moss: var(--color-category-nature-accent);
+  --moss-weak: var(--color-category-nature-subtle);
+  --moss-contrast: var(--color-category-nature-on-accent);
+  --clay: var(--color-category-food-accent);
+  --clay-weak: var(--color-category-food-subtle);
+  --clay-text: var(--color-category-food-text);
+  --map-base: var(--color-map-base);
+  --map-road: var(--color-map-road);
+  --map-park: var(--color-map-park);
+  --map-water: var(--color-map-water);
 }
 :root {
   --space-4: 4px; /* Separación mínima: entre título y subtítulo de una fila, y entre icono y etiqueta de una tab. */

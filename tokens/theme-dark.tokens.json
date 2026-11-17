@@ -1,271 +1,248 @@
 {
-  "$description": "EKOA — colores del tema oscuro. Mismas claves que theme-light.tokens.json; las notas de uso viven allí.",
+  "$description": "EKOA — colores semánticos del tema oscuro. Cada token apunta a un primitivo de palette.* (salvo los translúcidos, que llevan valor directo). El tema oscuro tiene exactamente las mismas claves que el claro.",
   "color": {
     "$type": "color",
-    "paper": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.0784,
-          0.0863,
-          0.0588
-        ],
-        "hex": "#14160f"
+    "surface": {
+      "base": {
+        "$value": "{palette.neutral.950}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "paper"
+          }
+        }
+      },
+      "raised": {
+        "$value": "{palette.neutral.900}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "card"
+          }
+        }
+      },
+      "sunken": {
+        "$value": "{palette.neutral.850}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "card-alt"
+          }
+        }
+      },
+      "bar": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0784,
+            0.0863,
+            0.0588
+          ],
+          "alpha": 0.78,
+          "hex": "#14160f"
+        },
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "bar"
+          }
+        }
+      },
+      "scrim": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "alpha": 0.55,
+          "hex": "#000000"
+        },
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "scrim"
+          }
+        }
       }
     },
-    "card": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.1216,
-          0.1333,
-          0.0902
-        ],
-        "hex": "#1f2217"
+    "text": {
+      "primary": {
+        "$value": "{palette.neutral.100}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "ink"
+          }
+        }
+      },
+      "secondary": {
+        "$value": "{palette.neutral.400}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "ink-soft"
+          }
+        }
+      },
+      "decorative": {
+        "$value": "{palette.neutral.600}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "ink-faint"
+          }
+        }
       }
     },
-    "card-alt": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.149,
-          0.1647,
-          0.1098
-        ],
-        "hex": "#262a1c"
+    "border": {
+      "default": {
+        "$value": "{palette.neutral.800}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "hairline"
+          }
+        }
+      },
+      "strong": {
+        "$value": "{palette.neutral.500}"
       }
     },
-    "ink": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.9451,
-          0.9412,
-          0.902
-        ],
-        "hex": "#f1f0e6"
+    "action": {
+      "primary": {
+        "bg": {
+          "$value": "{palette.neutral.100}"
+        },
+        "fg": {
+          "$value": "{palette.neutral.950}"
+        }
       }
     },
-    "ink-soft": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.651,
-          0.6627,
-          0.5882
-        ],
-        "hex": "#a6a996"
+    "control": {
+      "switch-off": {
+        "$value": "{palette.neutral.500}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "switch-off"
+          }
+        }
+      },
+      "knob": {
+        "$value": "{palette.white}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "knob"
+          }
+        }
       }
     },
-    "ink-faint": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.4431,
-          0.4549,
-          0.3725
-        ],
-        "hex": "#71745f"
+    "status": {
+      "danger": {
+        "accent": {
+          "$value": "{palette.red.400}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "danger"
+            }
+          }
+        },
+        "subtle": {
+          "$value": "{palette.red.800}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "danger-weak"
+            }
+          }
+        },
+        "text": {
+          "$value": "{palette.red.300}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "danger-text"
+            }
+          }
+        }
       }
     },
-    "hairline": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.2,
-          0.2118,
-          0.1647
-        ],
-        "hex": "#33362a"
+    "category": {
+      "nature": {
+        "accent": {
+          "$value": "{palette.teal.400}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "moss"
+            }
+          }
+        },
+        "subtle": {
+          "$value": "{palette.teal.800}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "moss-weak"
+            }
+          }
+        },
+        "on-accent": {
+          "$value": "{palette.teal.900}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "moss-contrast"
+            }
+          }
+        }
+      },
+      "food": {
+        "accent": {
+          "$value": "{palette.clay.400}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "clay"
+            }
+          }
+        },
+        "subtle": {
+          "$value": "{palette.clay.800}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "clay-weak"
+            }
+          }
+        },
+        "text": {
+          "$value": "{palette.clay.400}",
+          "$extensions": {
+            "com.ekoa": {
+              "legacyName": "clay-text"
+            }
+          }
+        }
       }
     },
-    "moss": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.4314,
-          0.7255,
-          0.698
-        ],
-        "hex": "#6eb9b2"
-      }
-    },
-    "moss-weak": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.0902,
-          0.1882,
-          0.1725
-        ],
-        "hex": "#17302c"
-      }
-    },
-    "moss-contrast": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.0431,
-          0.1255,
-          0.1137
-        ],
-        "hex": "#0b201d"
-      }
-    },
-    "clay": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.8784,
-          0.5412,
-          0.3098
-        ],
-        "hex": "#e08a4f"
-      }
-    },
-    "clay-weak": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.2275,
-          0.1647,
-          0.1098
-        ],
-        "hex": "#3a2a1c"
-      }
-    },
-    "clay-text": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.8784,
-          0.5412,
-          0.3098
-        ],
-        "hex": "#e08a4f"
-      }
-    },
-    "danger": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          1.0,
-          0.2706,
-          0.2275
-        ],
-        "hex": "#ff453a"
-      }
-    },
-    "danger-weak": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.2275,
-          0.1373,
-          0.1255
-        ],
-        "hex": "#3a2320"
-      }
-    },
-    "danger-text": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          1.0,
-          0.4314,
-          0.3922
-        ],
-        "hex": "#ff6e64"
-      }
-    },
-    "switch-off": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.2275,
-          0.2392,
-          0.2
-        ],
-        "hex": "#3a3d33"
-      }
-    },
-    "knob": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          1.0,
-          1.0,
-          1.0
-        ],
-        "hex": "#ffffff"
-      }
-    },
-    "bar": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.0784,
-          0.0863,
-          0.0588
-        ],
-        "alpha": 0.78,
-        "hex": "#14160f"
-      }
-    },
-    "scrim": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.0,
-          0.0,
-          0.0
-        ],
-        "alpha": 0.55,
-        "hex": "#000000"
-      }
-    },
-    "map-base": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.1647,
-          0.1686,
-          0.1294
-        ],
-        "hex": "#2a2b21"
-      }
-    },
-    "map-park": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.1804,
-          0.2627,
-          0.2039
-        ],
-        "hex": "#2e4334"
-      }
-    },
-    "map-water": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.1412,
-          0.2314,
-          0.2863
-        ],
-        "hex": "#243b49"
-      }
-    },
-    "map-road": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [
-          0.2275,
-          0.2353,
-          0.1843
-        ],
-        "hex": "#3a3c2f"
+    "map": {
+      "base": {
+        "$value": "{palette.neutral.850}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-base"
+          }
+        }
+      },
+      "road": {
+        "$value": "{palette.neutral.800}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-road"
+          }
+        }
+      },
+      "park": {
+        "$value": "{palette.sage.700}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-park"
+          }
+        }
+      },
+      "water": {
+        "$value": "{palette.sky.700}",
+        "$extensions": {
+          "com.ekoa": {
+            "legacyName": "map-water"
+          }
+        }
       }
     }
   }

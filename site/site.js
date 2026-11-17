@@ -17,14 +17,21 @@
     { id: 'components', label: 'Componentes', icon: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>' }
   ];
   var COLOR_GROUPS = [
-    ['Superficies', ['paper', 'card', 'card-alt', 'bar', 'scrim']],
-    ['Texto y líneas', ['ink', 'ink-soft', 'ink-faint', 'hairline']],
-    ['Moss · Naturaleza', ['moss', 'moss-weak', 'moss-contrast']],
-    ['Clay · Gastronomía y avisos', ['clay', 'clay-weak', 'clay-text']],
-    ['Danger · Errores y acciones destructivas', ['danger', 'danger-weak', 'danger-text']],
-    ['Switch', ['switch-off', 'knob']],
-    ['Mapas', ['map-base', 'map-park', 'map-water', 'map-road']]
+    ['surface', 'Superficies'], ['text', 'Texto'], ['border', 'Líneas'], ['action', 'Acción principal'], ['control', 'Controles'],
+    ['status', 'Estado · Errores y acciones destructivas'], ['category', 'Categorías · Naturaleza y gastronomía'], ['map', 'Mapas']
   ];
+  /* Recorre grupos anidados y devuelve [ruta, token] por cada hoja. */
+  var leaves = function (g, path) {
+    path = path || [];
+    return leaf(g).reduce(function (acc, e) {
+      return acc.concat('$value' in e[1] ? [[path.concat(e[0]), e[1]]] : leaves(e[1], path.concat(e[0])));
+    }, []);
+  };
+  var refTo = function (v) { return typeof v === 'string' ? v.slice(1, -1).replace(/^palette\./, '').replace(/\./g, '-') : null; };
+  var palValue = function (v) {
+    if (typeof v !== 'string') return v;
+    return v.slice(1, -1).split('.').slice(1).reduce(function (n, k) { return n[k]; }, T.prim.palette).$value;
+  };
   var TYPE_GROUPS = [
     ['Títulos (Archivo)', ['display', 'large-title', 'title-1', 'title-2', 'title-3']],
     ['Texto (SF Pro)', ['headline', 'body', 'callout', 'subheadline', 'subheadline-strong', 'footnote', 'caption-1', 'caption-2', 'eyebrow', 'badge']]
@@ -51,7 +58,7 @@
     ['Sheet', 'Superposiciones', 'Hoja inferior con velo', 390, 400, 'Hoja modal que sube desde abajo sobre un velo scrim, con tirador, título en Archivo (title-3) y un botón visible para cerrarla.']
   ];
   var FILES = [
-    ['tokens/', 'Tokens en formato DTCG 2025.10: core, tema claro y tema oscuro.'],
+    ['tokens/', 'Tokens en formato DTCG 2025.10: primitivos, core, tema claro y tema oscuro.'],
     ['dist/tokens.css', 'Variables CSS y clases tipográficas (generado desde los tokens).'],
     ['components/bundle.js', 'Los 12 componentes React (define window.EKOA).'],
     ['components/bundle.css', 'Estilos de los componentes.'],
@@ -92,8 +99,8 @@
 
   function load() {
     var get = function (f) { return fetch('tokens/' + f + '.tokens.json').then(function (r) { if (!r.ok) throw new Error(f); return r.json(); }); };
-    return Promise.all([get('core'), get('theme-light'), get('theme-dark'), fetch('docs/guidelines.md').then(function (r) { return r.text(); })])
-      .then(function (r) { T = { core: r[0], light: r[1], dark: r[2], md: r[3] }; });
+    return Promise.all([get('primitives'), get('core'), get('theme-light'), get('theme-dark'), fetch('docs/guidelines.md').then(function (r) { return r.text(); })])
+      .then(function (r) { T = { prim: r[0], core: r[1], light: r[2], dark: r[3], md: r[4] }; });
   }
 
   /* ---------- secciones ---------- */
@@ -109,18 +116,32 @@
   };
 
   R.colors = function () {
-    var light = T.light.color, dark = T.dark.color, used = {};
-    var html = '<h1>Color</h1>';
+    var dark = {}; leaves(T.dark.color).forEach(function (e) { dark[e[0].join('.')] = e[1]; });
+    var all = leaves(T.light.color);
+    var html = '<h1>Color</h1><p class="note" style="margin:-8px 0 16px">Dos niveles: los primitivos son las paletas de color; los semánticos dicen para qué sirve cada color y son los que usan los componentes. Cada tema apunta a un primitivo distinto.</p>';
+    html += '<h2 class="group">Semánticos</h2>';
     COLOR_GROUPS.forEach(function (g) {
-      var rows = g[1].filter(function (k) { return light[k]; }).map(function (k) {
-        used[k] = 1;
-        var l = cssColor(light[k].$value), d = cssColor(dark[k].$value);
-        return '<tr><td class="name">' + k + '<div class="note">--' + k + '</div></td>' +
-          '<td><div class="sw" style="--c:' + l + '"><i></i><span>' + l + '</span></div></td>' +
-          '<td><div class="sw" style="--c:' + d + '"><i></i><span>' + d + '</span></div></td>' +
-          '<td><div class="usage">' + esc(light[k].$description || '') + '</div></td></tr>';
+      var rows = all.filter(function (e) { return e[0][0] === g[0] || (g[0] === 'status' && e[0][0] === 'status') || (g[0] === 'category' && e[0][0] === 'category'); }).map(function (e) {
+        var key = e[0].join('.'), t = e[1], d = dark[key];
+        var l = cssColor(palValue(t.$value)), dk = cssColor(palValue(d.$value));
+        var lr = refTo(t.$value), dr = refTo(d.$value);
+        var lg = ((t.$extensions || {})['com.ekoa'] || {}).legacyName;
+        return '<tr><td class="name">' + e[0].join('/') + '<div class="note">--color-' + e[0].join('-') + '</div>' + (lg ? '<div class="note">antes --' + lg + '</div>' : '') + '</td>' +
+          '<td><div class="sw" style="--c:' + l + '"><i></i><span>' + l + '</span></div>' + (lr ? '<div class="note">' + lr + '</div>' : '') + '</td>' +
+          '<td><div class="sw" style="--c:' + dk + '"><i></i><span>' + dk + '</span></div>' + (dr ? '<div class="note">' + dr + '</div>' : '') + '</td>' +
+          '<td><div class="usage">' + esc(t.$description || '') + '</div></td></tr>';
       });
-      html += '<h2 class="group">' + g[0] + '</h2>' + tableOf(['Nombre', 'Claro', 'Oscuro', 'Uso'], rows);
+      html += '<h3 class="group" style="font-size:15px">' + g[1] + '</h3>' + tableOf(['Nombre', 'Claro', 'Oscuro', 'Uso'], rows);
+    });
+    html += '<h2 class="group">Primitivos</h2>';
+    leaf(T.prim.palette).forEach(function (f) {
+      var fam = f[0], g = f[1];
+      var items = '$value' in g ? [[fam, g]] : leaf(g).filter(function (e) { return '$value' in e[1]; }).map(function (e) { return [fam + '-' + e[0], e[1]]; });
+      var rows = items.map(function (e) {
+        var c = cssColor(e[1].$value), gen = ((e[1].$extensions || {})['com.ekoa'] || {}).generated;
+        return '<tr><td class="name">' + e[0] + '<div class="note">--palette-' + e[0] + '</div></td><td><div class="sw" style="--c:' + c + '"><i></i><span>' + c + '</span></div></td><td><div class="usage">' + (gen ? 'Generado para completar la rampa; aún sin uso.' : 'En uso.') + '</div></td></tr>';
+      });
+      html += '<h3 class="group" style="font-size:15px">' + fam + '</h3>' + (g.$description ? '<p class="note" style="margin:0 0 8px">' + esc(g.$description) + '</p>' : '') + tableOf(['Nombre', 'Valor', 'Estado'], rows);
     });
     view.innerHTML = html;
   };
@@ -215,7 +236,8 @@
   /* ---------- búsqueda ---------- */
   function buildSearch() {
     SEARCH = [];
-    leaf(T.light.color).forEach(function (e) { SEARCH.push([e[0], 'Color', 'colors']); });
+    leaves(T.light.color).forEach(function (e) { SEARCH.push([e[0].join('/'), 'Color', 'colors']); var lg = ((e[1].$extensions || {})['com.ekoa'] || {}).legacyName; if (lg) SEARCH.push([lg, 'Color (nombre anterior)', 'colors']); });
+    leaves(T.prim.palette).forEach(function (e) { SEARCH.push([e[0].join('-'), 'Primitivo', 'colors']); });
     leaf(T.core.text).forEach(function (e) { SEARCH.push([e[0], 'Tipografía', 'type']); });
     leaf(T.core.space).forEach(function (e) { SEARCH.push(['space-' + e[0], 'Espaciado', 'spacing']); });
     leaf(T.core.radius).forEach(function (e) { SEARCH.push(['radius-' + e[0], 'Radios', 'radius']); });

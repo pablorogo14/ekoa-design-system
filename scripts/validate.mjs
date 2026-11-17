@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const dir = join(dirname(fileURLToPath(import.meta.url)), "..", "tokens");
-const FILES = ["core", "theme-light", "theme-dark"];
+const FILES = ["primitives", "core", "theme-light", "theme-dark"];
 const docs = Object.fromEntries(FILES.map((f) => [f, JSON.parse(readFileSync(join(dir, `${f}.tokens.json`), "utf8"))]));
 const errors = [];
 const err = (file, path, msg) => errors.push(`${file}: ${path.join(".")} — ${msg}`);
@@ -89,6 +89,14 @@ for (const t of tokens) {
     else if (isObj(x)) Object.values(x).forEach(scan);
   };
   scan(v);
+}
+
+// Los colores de los temas deben apuntar a un primitivo, salvo los translúcidos (alpha < 1).
+for (const t of tokens) {
+  if (!t.file.startsWith("theme-") || t.type !== "color") continue;
+  const v = t.value;
+  if (isRef(v)) { if (!v.startsWith("{palette.")) err(t.file, t.path, "la referencia debe apuntar a un primitivo ({palette.*})"); }
+  else if (!(isObj(v) && typeof v.alpha === "number" && v.alpha < 1)) err(t.file, t.path, "los colores semánticos deben ser una referencia a {palette.*} (solo los translúcidos llevan valor directo)");
 }
 
 // Paridad entre temas

@@ -4,6 +4,7 @@ Design system de **EKOA**, una app de iPhone de viajes sostenibles. Sigue las co
 
 - **Tokens** en formato [Design Tokens (DTCG) 2025.10](https://www.designtokens.org/), la primera versión estable del estándar del W3C Design Tokens Community Group.
 - **Componentes** en `components/`, con React 18 como global y tipos TypeScript.
+- **Mapa para agentes y colaboradores**: [`DESIGN.md`](DESIGN.md), con dónde está cada cosa y qué reglas comprueba el build.
 - **Guía de uso** (contenido, color, tipografía, forma, navegación, toque): [`docs/guidelines.md`](docs/guidelines.md).
 - **Catálogo de componentes**: [`docs/components.md`](docs/components.md).
 - **Vista visual**: `index.html`, con secciones de color, tipografía, espaciado, radios, sombras, layout y componentes. Hay que servirla por HTTP (ver más abajo).
@@ -12,7 +13,7 @@ Design system de **EKOA**, una app de iPhone de viajes sostenibles. Sigue las co
 
 ```
 tokens/
-  primitives.tokens.json    paletas de color por familia (neutral, gray, moss, teal, clay, red, sage, sky); el número es el tono
+  primitives.tokens.json    paletas de color por familia (neutral, moss, teal, clay, red, sage, sky); el número es el tono
   core.tokens.json          tipografía, espaciado, radios, sombras, layout, fuentes
   theme-light.tokens.json   colores semánticos del tema claro (apuntan a primitivos; con notas de uso)
   theme-dark.tokens.json    colores semánticos del tema oscuro (mismas claves que el claro)
@@ -24,7 +25,7 @@ components/
 docs/                       guía de uso y catálogo de componentes
 previews/                   portada y vistas previas de cada componente (se cargan en iframes)
 site/                       estilos y lógica de la página de documentación
-scripts/                    validate.mjs, build.mjs, smoke.mjs
+scripts/                    validate.mjs, build.mjs, lint.mjs (+ lint.test.mjs y fixtures), smoke.mjs
 index.html                  página de documentación visual (barra lateral por secciones)
 ```
 
@@ -42,8 +43,9 @@ index.html                  página de documentación visual (barra lateral por 
 npm install
 npm run validate   # valida los tokens contra DTCG 2025.10
 npm run build      # regenera dist/tokens.css
+npm run lint       # rechaza colores y px sueltos en components/ (ver DESIGN.md)
 npm test           # renderiza los 12 componentes
-npm run check      # las tres cosas
+npm run check      # todo lo anterior
 ```
 
 Después de tocar un `.tokens.json`, ejecuta `npm run build` y sube también `dist/`. El flujo de CI (`.github/workflows/check.yml`) falla si `dist/` no está al día.
@@ -67,9 +69,7 @@ Detalle y ejemplo mínimo en [`docs/components.md`](docs/components.md). Para el
 Vienen del artefacto original y no se han corregido aquí:
 
 1. **`moss` en el tema oscuro** sigue en el verde azulado anterior (`#6eb9b2`), mientras que el claro pasó a verde oliva (`#626549`). Hay que decidir si se alinea o si la diferencia es intencionada.
-2. **`ink-soft` sobre `card-alt` en el tema claro** da 4,2:1, por debajo del objetivo de 4,5:1.
-3. **Archivo no está autoalojada**: se carga desde Google Fonts (pesos 700 y 800). `dist/tokens.css` no incluye `@font-face`.
-4. **`switch-off` en el tema claro** (`#e9e9ea`) casi no se distingue del fondo `paper`; el estado apagado depende de la posición de la perilla.
+2. **Archivo no está autoalojada**: se carga desde Google Fonts (pesos 700 y 800). `dist/tokens.css` no incluye `@font-face`.
 
 ## Licencia
 

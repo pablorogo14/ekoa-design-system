@@ -1,0 +1,4 @@
+.a { color: var(--ink); padding: 0 var(--space-16); gap: var(--space-8); border-radius: var(--radius-btn); }
+/* lint-allow: medida de iOS fuera de la escala */
+.b { padding: 3px; }
+.c { margin: 0; border: 1px solid var(--hairline); --local: 1; color: var(--local); }

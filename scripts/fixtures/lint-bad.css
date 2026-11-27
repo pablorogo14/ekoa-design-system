@@ -1,0 +1,10 @@
+.a { color: #1f1e1a; }
+.b { background: rgba(0, 0, 0, .5); }
+.c { border: 1px solid white; }
+.d { padding: 16px; }
+.e { margin: 0 13px; }
+.f { gap: 8px; }
+.g { border-radius: 14px; }
+.h { color: var(--no-existe); }
+/* lint-allow: */
+.i { padding: 3px; }

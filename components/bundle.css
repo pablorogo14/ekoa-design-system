@@ -34,6 +34,7 @@ button { font: inherit; -webkit-appearance: none; appearance: none; }
 .ek-chip-selected { background: var(--ink); color: var(--paper); box-shadow: none; font-weight: 600; }
 
 /* Badge */
+/* lint-allow: 2px vertical = relleno fino del badge (texto de 11 pt); no hay token space-2 */
 .ek-badge { display: inline-block; padding: 2px var(--space-8); border-radius: var(--radius-pill);
   font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: .01em; }
 .ek-badge-nature { background: var(--moss-weak); color: var(--moss); }
@@ -41,6 +42,7 @@ button { font: inherit; -webkit-appearance: none; appearance: none; }
 .ek-badge-community, .ek-badge-neutral { background: var(--card-alt); color: var(--ink-soft); }
 
 /* Segmented control (32 pt, as iOS) */
+/* lint-allow: 2px = holgura del segmento dentro de la pista, como en iOS; no hay token space-2 */
 .ek-seg { display: flex; width: 100%; min-height: 32px; padding: 2px; border-radius: var(--radius-track); background: var(--card-alt); }
 .ek-seg-item { flex: 1; min-height: 28px; border: 0; border-radius: var(--radius-xs); background: transparent;
   color: var(--ink-soft); font-size: 13px; line-height: 18px; font-weight: 600; cursor: pointer; }
@@ -50,7 +52,8 @@ button { font: inherit; -webkit-appearance: none; appearance: none; }
 .ek-switch { position: relative; width: 51px; height: 31px; padding: 0; border: 0; border-radius: var(--radius-pill);
   background: var(--switch-off); cursor: pointer; flex-shrink: 0; transition: background .15s; }
 .ek-switch-knob { position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%;
-  background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: left .15s; }
+  /* lint-allow: sombra de la perilla (alfa .25) sin token propio; pendiente decidir si pasa a token */
+  background: var(--color-control-knob); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: left .15s; }
 .ek-switch-on { background: var(--ink); }
 .ek-switch-on .ek-switch-knob { left: 22px; }
 .ek-switch:disabled { opacity: .4; cursor: not-allowed; }
@@ -110,6 +113,7 @@ button.ek-row:active { background: var(--card-alt); }
 
 /* Sheet */
 .ek-scrim { position: absolute; inset: 0; display: flex; align-items: flex-end; background: var(--scrim); z-index: 20; }
+/* lint-allow: 10px superior = aire sobre el tirador, medida de iOS fuera de la escala */
 .ek-sheet { width: 100%; max-height: 85%; overflow-y: auto; padding: 10px var(--space-16) var(--safe-bottom);
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; background: var(--paper); }
 .ek-grabber { width: 36px; height: 5px; margin: 0 auto var(--space-8); border-radius: var(--radius-pill); background: var(--hairline); }
